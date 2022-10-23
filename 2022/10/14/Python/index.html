@@ -95,7 +95,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">527</span>
+            <span class="post-count">1.4k</span>
         </span>
     </span>
 
@@ -104,7 +104,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">2 min</span>
+            <span class="post-count">5 min</span>
         </span>
     </span>
 </div>
@@ -189,6 +189,99 @@
   - range(num1,num2,step): 获取从num1开始到num2数字序列，数字之间的步长以step为准，默认step为1
   例如：range(5,10,2)  所取数字为5 7 9
 </code></pre>
+</li>
+</ul>
+<br>
+
+<hr>
+<h2 id="数据容器"><a href="#数据容器" class="headerlink" title="数据容器"></a>数据容器</h2><ul>
+<li>list（列表）<ul>
+<li>name_list=[“python”,’xs’,1,”a”,True]<br> a=[[1,2,3,],[4,5,6,]]</li>
+<li>下标索引(反向)：my_list[0]<br>嵌套列表：My_list[0][0]</li>
+<li>向列表增加一个元素：列表.append(元素)</li>
+<li>在指定下标插入元素：列表.insert(下标,元素)</li>
+<li>删除列表指定下标元素：列表.pop(下标)</li>
+<li>除去元素(从前往后第一个元素)：列表.remove(元素)</li>
+<li>清空列表：列表.clean</li>
+<li>查找指定下标元素：列表.index(元素)</li>
+<li>统计列表长度：len(列表)</li>
+<li>统计列表元素出现次数：列表.count(元素)</li>
+</ul>
+</li>
+<li>tuple(元组：无法修改)<ul>
+<li>t1=(“python”,’xs’,1,”a”,True) </li>
+<li>下标索引(反向)：t1[0]<br>嵌套列表：t1[0][0] </li>
+<li>查找指定下标元素：元组.index(元素)</li>
+<li>统计元组长度：len(元组)</li>
+<li>统计元组元素出现次数：元组.count(元素)</li>
+</ul>
+</li>
+<li>str(字符串：无法修改)<ul>
+<li>my_name=”xushuai”<br>my_name[0] </li>
+<li>replace方法（将str1替换为str2）：string.replace(被替换,替换)</li>
+<li>split方法（将字符串以什么字符相分割）：string.split(“分隔符”)<br>得到的结果为一个列表</li>
+<li>strip方法(去除前后的空格)：string.strip()<pre><code>     (去除前后指定字符串): string.strip(&quot;字符串&quot;)
+</code></pre>
+</li>
+<li>统计字符串元素出现次数：string.count(字符串)</li>
+<li>统计字符串长度：len(字符串)</li>
+</ul>
+</li>
+<li>序列（切片）<ul>
+<li><img src="/image/5.png"> </li>
+</ul>
+</li>
+<li>集合set：不支持下标索引，允许修改<ul>
+<li>my_set={“xu”,”s”,”c”}</li>
+<li>集合.add(元素)：添加</li>
+<li>集合.remove(元素)：移除指定元素</li>
+<li>集合.pop()：随机取出一个元素</li>
+<li>集合1.difference(集合2)：差集(得到一个新集合,集合1有集合2没有)</li>
+<li>集合1.union(集合2)：合集(得到新集合)</li>
+<li>集合1.difference_update(集合2)：在集合1中删除集合2中的元素</li>
+</ul>
+</li>
+<li>字典dict<ul>
+<li>my_dict={key1:value1,key2:value2,key3:value3}</li>
+<li>字典.[key]：获取指定key的value</li>
+<li>字典.[key]=value：添加或修改</li>
+<li>字典.pop(key)：取出对应的value值并在字典中删除</li>
+<li>字典.keys：获取字典中所有的key，可用于for循环</li>
+<li>len(字典)：计算字典的元素</li>
+<li>字典嵌套(表格形式)  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">my_dict=&#123;</span><br><span class="line">    x:&#123;</span><br><span class="line">        <span class="string">&quot;数学&quot;</span>:<span class="number">88</span>,</span><br><span class="line">        <span class="string">&quot;英语&quot;</span>:<span class="number">78</span>,</span><br><span class="line">        <span class="string">&quot;语文&quot;</span>:<span class="number">99</span></span><br><span class="line">    &#125;,</span><br><span class="line">    y:&#123;</span><br><span class="line">        <span class="string">&quot;数学&quot;</span>:<span class="number">88</span>,</span><br><span class="line">        <span class="string">&quot;英语&quot;</span>:<span class="number">78</span>,</span><br><span class="line">        <span class="string">&quot;语文&quot;</span>:<span class="number">99</span></span><br><span class="line">    &#125;,</span><br><span class="line">    z:&#123;</span><br><span class="line">        <span class="string">&quot;数学&quot;</span>:<span class="number">88</span>,</span><br><span class="line">        <span class="string">&quot;英语&quot;</span>:<span class="number">78</span>,</span><br><span class="line">        <span class="string">&quot;语文&quot;</span>:<span class="number">99</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>容器通用排序功能：sorted(容器,[reverse=True])<br>reverse: 用于反转排序，默认为False</li>
+<li>容器之间可以相互转换，字典除外</li>
+</ul>
+<br>
+
+<hr>
+<h2 id="函数-1"><a href="#函数-1" class="headerlink" title="函数"></a>函数</h2><ul>
+<li>传入参数<ul>
+<li>不定长–&gt;位置不定长<br>  def 函数名(参数:*args)<br>  *args: args是元组类型<br>  例如: 函数名(“Tom”,18)–&gt;所有参数都会被args收集，合并为一个元组，这叫位置传递 </li>
+<li>不定长–&gt;关键字不定长<br>  def 函数名(参数:**kwargs)<br>  **kwargs：传入以字典的形式传入(key=value)<br>  例如: 函数名(name=”Tom”,age=18,id=110)</li>
+<li>函数作为参数进行传入：计算逻辑传入</li>
+</ul>
+</li>
+<li>定义函数<ul>
+<li>def关键字：定义带有名称的函数（可以重复使用）</li>
+<li>lambda关键字：定义匿名函数，没有名称（只可临时使用一次） </li>
+<li>–&gt;lambda 传入参数:函数体（一行代码）<br>例子：fun(lambda x,y:x+y) </li>
+</ul>
+</li>
+</ul>
+<br>
+
+<hr>
+<h2 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h2><ul>
+<li>open():打开函数<ul>
+<li>open(name,mode,encoding)</li>
+<li>name: 打开文件名的字符串(可以包含文件所在的具体路径)</li>
+<li>mode：只读，只写，追加</li>
+<li>encoding：编码格式</li>
+<li>示例：f=open(“python.txt”,”r”,encoding=”UTF-8”)</li>
+</ul>
 </li>
 </ul>
  
