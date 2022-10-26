@@ -95,7 +95,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">1.9k</span>
+            <span class="post-count">2.2k</span>
         </span>
     </span>
 
@@ -104,7 +104,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">7 min</span>
+            <span class="post-count">9 min</span>
         </span>
     </span>
 </div>
@@ -309,11 +309,45 @@
 <hr>
 <h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><ul>
 <li>语法  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    f=<span class="built_in">open</span>(<span class="string">&quot;1.txt&quot;</span>,<span class="string">&quot;r&quot;</span>) <span class="comment">#可能发生错误的代码</span></span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    f=<span class="built_in">open</span>(<span class="string">&quot;1.txt&quot;</span>,<span class="string">&quot;w&quot;</span>) <span class="comment">#发生错误时需要执行的代码</span></span><br></pre></td></tr></table></figure>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="built_in">print</span>(name)</span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">    <span class="built_in">print</span>(e)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;没有异常执行代码&quot;</span>)</span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;无论有没有异常都会执行&quot;</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="导包"><a href="#导包" class="headerlink" title="导包"></a>导包</h2></li>
-<li>语法  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#方式一 </span></span><br><span class="line"><span class="keyword">import</span> my_packge.my_module1</span><br><span class="line">my_packge.my_module1.test()</span><br><span class="line"></span><br><span class="line"><span class="comment">#方式二</span></span><br><span class="line"><span class="keyword">from</span> my_packge <span class="keyword">import</span> my_module</span><br><span class="line">my_module.test()</span><br><span class="line"></span><br><span class="line"><span class="comment">#方式三</span></span><br><span class="line"><span class="keyword">from</span> my_packge.my_module <span class="keyword">import</span> test</span><br><span class="line">test()</span><br><span class="line"></span><br><span class="line"><span class="comment">#方式四（将包下得模块全部导入进来）</span></span><br><span class="line"><span class="keyword">from</span> my_packge <span class="keyword">import</span> *</span><br><span class="line"><span class="comment">#注意：</span></span><br></pre></td></tr></table></figure></li>
-<li>自定义模块：<ul>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="built_in">print</span>(name)</span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">    <span class="built_in">print</span>(e)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;没有异常执行代码&quot;</span>)</span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;无论有没有异常都会执行&quot;</span>)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<br>
+
+<hr>
+<h2 id="导包"><a href="#导包" class="headerlink" title="导包"></a>导包</h2><ul>
+<li><p>语法</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#方式一 </span></span><br><span class="line"><span class="keyword">import</span> my_packge.my_module1</span><br><span class="line">my_packge.my_module1.test()</span><br><span class="line"></span><br><span class="line"><span class="comment">#方式二</span></span><br><span class="line"><span class="keyword">from</span> my_packge <span class="keyword">import</span> my_module</span><br><span class="line">my_module.test()</span><br><span class="line"></span><br><span class="line"><span class="comment">#方式三</span></span><br><span class="line"><span class="keyword">from</span> my_packge.my_module <span class="keyword">import</span> test</span><br><span class="line">test()</span><br><span class="line"></span><br><span class="line"><span class="comment">#方式四（将包下得模块全部导入进来）</span></span><br><span class="line"><span class="keyword">from</span> my_packge <span class="keyword">import</span> *</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>自定义模块：</p>
+<ul>
 <li><img src="/image/6.png"> </li>
+</ul>
+</li>
+<li><p>安装第三方包（拓展功能）</p>
+<ul>
+<li>在命令窗口：<ul>
+<li>pip install 包名称</li>
+<li>pip install -i <a target="_blank" rel="noopener" href="https://pypi.tuna.tsinghua.edu.cn/simple">https://pypi.tuna.tsinghua.edu.cn/simple</a> 包名称</li>
+</ul>
+</li>
+<li>pycharm中安装</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<hr>
+<h2 id="开发案例"><a href="#开发案例" class="headerlink" title="开发案例"></a>开发案例</h2><ul>
+<li><p>json（通用、中转站）（只有列表、字典才可转换）</p>
+<ul>
+<li>介绍：轻量级得数据交互格式，json按照指定格式去组织和封装数据，本质上是特定格式的字符串</li>
+<li>主要功能：json是一个在各个编程语言流通的数据格式负责不用编程语言的数据传递和交互</li>
+<li>json.dumps(data): 将python转换成json(若想把python中的中文正常转换，添加参数ensure_ascii=False)<br>json.loads(data): 将json转换成python  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line">data=&#123;<span class="string">&quot;name&quot;</span>:<span class="string">&quot;张三&quot;</span>,<span class="string">&quot;age&quot;</span>:<span class="number">20</span>&#125;</span><br><span class="line">json_str=json.dumps(data,ensure_ascii=<span class="literal">False</span>) <span class="comment">#将python转换成json</span></span><br><span class="line"></span><br><span class="line">s=<span class="string">&quot;&#123;&quot;</span>name<span class="string">&quot;:&quot;</span>张三<span class="string">&quot;,&quot;</span>age<span class="string">&quot;:20&#125;&quot;</span></span><br><span class="line">p=json.loads(s) <span class="comment">#将json转换成python</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>pyechart模块：数据可视化 </p>
+<ul>
+<li>网址：<a target="_blank" rel="noopener" href="https://gallery.pyecharts.org/">https://gallery.pyecharts.org</a> </li>
+<li>最基本折线图  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pyecharts.charts <span class="keyword">import</span> Line</span><br><span class="line"><span class="keyword">from</span> pyecharts.options <span class="keyword">import</span> *</span><br><span class="line"><span class="comment">#创建折线图对象</span></span><br><span class="line">line=Line()</span><br><span class="line"><span class="comment">#设置折线图x轴</span></span><br><span class="line">line.add_xaxis([<span class="string">&quot;x&quot;</span>,<span class="string">&quot;y&quot;</span>,<span class="string">&quot;z&quot;</span>])</span><br><span class="line"><span class="comment">#设置y轴数据</span></span><br><span class="line">line.add_yaxis(<span class="string">&quot;GDP&quot;</span>,[<span class="number">10</span>,<span class="number">12</span>,<span class="number">13</span>])</span><br><span class="line"><span class="comment">#全局设置set</span></span><br><span class="line">line.set_global_opts</span><br><span class="line">(</span><br><span class="line">    <span class="comment">#标题展示</span></span><br><span class="line">    title_opts=TitleOpts(title=<span class="string">&quot;GDP展示&quot;</span>,pos_left=<span class="string">&quot;center&quot;</span>,pos_bottom=<span class="string">&quot;1%&quot;</span>),</span><br><span class="line">    <span class="comment">#图例展示</span></span><br><span class="line">    legend_opts=LegendOpts(is_show=<span class="literal">True</span>),</span><br><span class="line">    <span class="comment">#工具箱展示</span></span><br><span class="line">    toolbox_opts=ToolboxOpts(is_show=<span class="literal">True</span>),</span><br><span class="line">    <span class="comment">#视觉映射</span></span><br><span class="line">    visualmap_opts=VisualMapOpts(is_show=<span class="literal">True</span>)</span><br><span class="line">)</span><br><span class="line"><span class="comment">#render方法生咸图像</span></span><br><span class="line">line.render()</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 </ul>
