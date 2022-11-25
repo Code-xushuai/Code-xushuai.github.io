@@ -152,6 +152,10 @@
 .ri-artboard-fill:before { content: "\ea6a"; }
 .ri-artboard-line:before { content: "\ea6b"; }
 .ri-article-fill:before { content: "\ea6c"; }
+.articles .article {
+    display: inline-block;
+    width: 30%;
+}
 .ri-article-line:before { content: "\ea6d"; }
 .ri-asterisk:before { content: "\ea6e"; }
 .ri-at-fill:before { content: "\ea6f"; }
