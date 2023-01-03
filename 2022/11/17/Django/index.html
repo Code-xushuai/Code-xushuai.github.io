@@ -91,7 +91,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">6.4k</span>
+            <span class="post-count">6.7k</span>
         </span>
     </span>
 
@@ -100,7 +100,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">31 min</span>
+            <span class="post-count">33 min</span>
         </span>
     </span>
 </div>
@@ -495,9 +495,52 @@
 <br>
 
 <h2 id="Ajax删除对话框"><a href="#Ajax删除对话框" class="headerlink" title="Ajax删除对话框"></a>Ajax删除对话框</h2><ul>
-<li>利用全局变量获取当前删除的id</li>
+<li>利用全局变量获取当前删除的id。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//获取当前行的id</span></span><br><span class="line"><span class="variable constant_">DELETE_ID</span> = $(<span class="variable language_">this</span>).<span class="title function_">attr</span>(<span class="string">&quot;uid&quot;</span>);   </span><br><span class="line"><span class="comment">//获取到uid标签的值</span></span><br><span class="line"><span class="keyword">var</span> uid = $(<span class="variable language_">this</span>).<span class="title function_">attr</span>(<span class="string">&quot;uid&quot;</span>);</span><br></pre></td></tr></table></figure></li>
+<li>清除对话框内容<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//清除对话框</span></span><br><span class="line">$(<span class="string">&quot;#formAdd&quot;</span>)[<span class="number">0</span>].<span class="title function_">reset</span>();       </span><br></pre></td></tr></table></figure></li>
 </ul>
- 
+<hr>
+<br>
+
+<h2 id="Ajax编辑对话框"><a href="#Ajax编辑对话框" class="headerlink" title="Ajax编辑对话框"></a>Ajax编辑对话框</h2><ul>
+<li>row_obj = Order.objects.filter(id=uid).first()<ul>
+<li>得到的是一个对象（当前行所有数据）</li>
+</ul>
+</li>
+<li>row_obj = Order.objects.filter(id=uid).values(“id”, “title”).first()<ul>
+<li>得到是一个字典（{id：12， title: “xxx”}）</li>
+</ul>
+</li>
+<li>row_obj = Order.objects.all()<ul>
+<li>得到是一个queryset，quertset是一个列表。queryset=[obj，obj····]</li>
+</ul>
+</li>
+<li>给编辑框默认值<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$.<span class="title function_">each</span>(res.<span class="property">data</span>,<span class="keyword">function</span> (<span class="params">name,value</span>)&#123;</span><br><span class="line">    $(<span class="string">&quot;#id_&quot;</span>+ name).<span class="title function_">val</span>(value);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<br>
+
+<h2 id="ECharts"><a href="#ECharts" class="headerlink" title="ECharts"></a>ECharts</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://echarts.apache.org/zh/index.html">https://echarts.apache.org/zh/index.html</a></li>
+<li>官网找配置</li>
+</ul>
+<hr>
+<br>
+
+<h2 id="HighCharts"><a href="#HighCharts" class="headerlink" title="HighCharts"></a>HighCharts</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.hcharts.cn/">https://www.hcharts.cn/</a></li>
+</ul>
+<hr>
+<br>
+
+<h2 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h2><ul>
+<li>表单需要加条件:enctype=”multipart/form-data”<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span> <span class="attr">enctype</span>=<span class="string">&quot;multipart/form-data&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    </span><span class="template-tag">&#123;% <span class="name"><span class="name">csrf_token</span></span> %&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">name</span>=<span class="string">&quot;avatar&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;提交&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span></span><br></pre></td></tr></table></figure></li>
+<li>获取用户提交文件<br>request.FILES<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(request.FILES)  <span class="comment"># &lt;MultiValueDict: &#123;&#125;&gt;</span></span><br><span class="line"><span class="comment"># 获取文件</span></span><br><span class="line">file_obj = request.FILES.get(<span class="string">&quot;avatar&quot;</span>)</span><br><span class="line"></span><br><span class="line">f = <span class="built_in">open</span>(<span class="string">&quot;a1.png&quot;</span>, mode=<span class="string">&#x27;wb&#x27;</span>)</span><br><span class="line">    <span class="keyword">for</span> chunk <span class="keyword">in</span> file_obj.chunks():</span><br><span class="line">        f.write(chunk)</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure></li>
+<li>表单其余的提交在<br>request.POST<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(request.POST)  <span class="comment"># &lt;QueryDict: &#123;&#125;&gt;</span></span><br><span class="line"><span class="comment"># 获取post提交的数据</span></span><br><span class="line">name = request.POST.get(<span class="string">&quot;username&quot;</span>)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<br>
+
+<h2 id="ajax"><a href="#ajax" class="headerlink" title="ajax"></a>ajax</h2> 
       <!-- reward -->
       
       <div id="reword-out">
@@ -568,6 +611,15 @@
    
   <nav class="article-nav">
     
+      <a href="/2022/12/28/Restful-API/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            Restful API
+          
+        </div>
+      </a>
+    
     
       <a href="/2022/11/16/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
@@ -597,7 +649,7 @@
     <ul>
       <li>
         Copyrights &copy;
-        2015-2022
+        2015-2023
         <i class="ri-heart-fill heart_icon"></i> Xu
       </li>
     </ul>
