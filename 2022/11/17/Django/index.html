@@ -91,7 +91,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">6.7k</span>
+            <span class="post-count">6.8k</span>
         </span>
     </span>
 
@@ -100,7 +100,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">33 min</span>
+            <span class="post-count">34 min</span>
         </span>
     </span>
 </div>
@@ -519,6 +519,30 @@
 <hr>
 <br>
 
+<h2 id="Ajax知识点"><a href="#Ajax知识点" class="headerlink" title="Ajax知识点"></a>Ajax知识点</h2><ul>
+<li>post请求<ul>
+<li>前端<ul>
+<li>接收用户输入: input输入框<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">    name : $(&#x27;#admin_Name&#x27;).val(),</span><br><span class="line">    password : $(&#x27;#admin_Password&#x27;).val(),</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></li>
+<li>绑定点击事件：input，button，a</li>
+<li>点击展示弹出框<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;#btnAdmin1&quot;).click(function ()&#123;</span><br><span class="line">    $(&quot;#myModal3&quot;).modal(&quot;show&quot;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>后端<ul>
+<li>获取数据<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">email = request.POST.get(<span class="string">&quot;email&quot;</span>)</span><br><span class="line">password = request.POST.get(<span class="string">&quot;password&quot;</span>)</span><br></pre></td></tr></table></figure></li>
+<li>发送post请求的地址需要：@csrf_exempt</li>
+<li>最后返回的是：return JsonResponse({“status”: True})</li>
+<li>保存至数据库<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UserInfo.objects.create(enterprise=enterprise)</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>返回其他页面：window.location.href = ‘/user/list/‘</li>
+<li>点击图片跳转其他页面<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;/login/&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;&#123;% static &#x27;images/logo.png&#x27; %&#125;&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;Logo&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<br>
+
 <h2 id="ECharts"><a href="#ECharts" class="headerlink" title="ECharts"></a>ECharts</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://echarts.apache.org/zh/index.html">https://echarts.apache.org/zh/index.html</a></li>
 <li>官网找配置</li>
@@ -537,10 +561,7 @@
 <li>获取用户提交文件<br>request.FILES<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(request.FILES)  <span class="comment"># &lt;MultiValueDict: &#123;&#125;&gt;</span></span><br><span class="line"><span class="comment"># 获取文件</span></span><br><span class="line">file_obj = request.FILES.get(<span class="string">&quot;avatar&quot;</span>)</span><br><span class="line"></span><br><span class="line">f = <span class="built_in">open</span>(<span class="string">&quot;a1.png&quot;</span>, mode=<span class="string">&#x27;wb&#x27;</span>)</span><br><span class="line">    <span class="keyword">for</span> chunk <span class="keyword">in</span> file_obj.chunks():</span><br><span class="line">        f.write(chunk)</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure></li>
 <li>表单其余的提交在<br>request.POST<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(request.POST)  <span class="comment"># &lt;QueryDict: &#123;&#125;&gt;</span></span><br><span class="line"><span class="comment"># 获取post提交的数据</span></span><br><span class="line">name = request.POST.get(<span class="string">&quot;username&quot;</span>)</span><br></pre></td></tr></table></figure></li>
 </ul>
-<hr>
-<br>
-
-<h2 id="ajax"><a href="#ajax" class="headerlink" title="ajax"></a>ajax</h2> 
+ 
       <!-- reward -->
       
       <div id="reword-out">

@@ -91,7 +91,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">720</span>
+            <span class="post-count">1.5k</span>
         </span>
     </span>
 
@@ -100,7 +100,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">2 min</span>
+            <span class="post-count">5 min</span>
         </span>
     </span>
 </div>
@@ -117,16 +117,33 @@
        
   <h2 id="CSS-Cascading-Style-Sheets"><a href="#CSS-Cascading-Style-Sheets" class="headerlink" title="CSS(Cascading Style Sheets)"></a>CSS(Cascading Style Sheets)</h2><ul>
 <li>层叠样式表</li>
+<li>CSS规则：选择器加一条或者多条样式<br><img src="/image/58.png"></li>
+<li>CSS语法写在head标签之中的style标签中</li>
+<li>属性与属性值以键值对的形式出现</li>
+<li>属性是指：指定对象设置的样式属性，例如文字大小、文本颜色等</li>
+<li>属性与属性值之间用分号（:）分开</li>
+<li>多个键值对之间使用逗号(;)分开</li>
 </ul>
 <hr>
 <br>
 
-<h2 id="样式"><a href="#样式" class="headerlink" title="样式"></a>样式</h2><ul>
-<li>内联样式<ul>
-<li>行内样式：单一元素的样式，将样式属性添加到相关元素中，样式属性包括任何的css属性</li>
+<h2 id="CSS代码规范"><a href="#CSS代码规范" class="headerlink" title="CSS代码规范"></a>CSS代码规范</h2><ul>
+<li>1.空格规范<ul>
+<li>属性值前面，冒号后面，保留一个空格</li>
+<li>选择器（标签）和大括号中间保留一个空格<br><img src="/image/60.png"></li>
 </ul>
 </li>
-<li>内部css<ul>
+<li>2.样式格式书写<ul>
+<li>展开格式<br><img src="/image/59.png"></li>
+</ul>
+</li>
+</ul>
+<hr>
+<br>
+
+<h2 id="CSS引入方式"><a href="#CSS引入方式" class="headerlink" title="CSS引入方式"></a>CSS引入方式</h2><ul>
+<li>行内样式<br>  单一元素的样式，将样式属性添加到相关元素中，样式属性包括任何的css属性</li>
+<li>内部样式表<ul>
 <li>一般定义在head标签中的style标签中</li>
 <li>css选择器：用来寻找你想要定义样式的元素</li>
 <li>弊端：只能用于一个页面，多个页面共享一个样式就不行</li>
@@ -134,7 +151,7 @@
 </li>
 <li>外部样式<ul>
 <li>可以通过一个文件来改变整个网站的样式，将整个css代码放在.css为后缀的文件中</li>
-<li>引用文件<br><img src="/image/27.png"></li>
+<li>引用文件: href=”css文件路径 “<br><img src="/image/27.png"></li>
 </ul>
 </li>
 <li></li>
@@ -142,37 +159,51 @@
 <hr>
 <br>
 
-<h2 id="css选择器"><a href="#css选择器" class="headerlink" title="css选择器"></a>css选择器</h2><ul>
-<li>简单选择器<ul>
-<li>元素选择器：根据元素名称选择HTML元素<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span>&#123;   //选择了所有的<span class="selector-tag">p</span>标签</span><br><span class="line">    <span class="attribute">color</span>: red;            </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>id选择器<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#id</span>属性值</span><br><span class="line">&#123;</span><br><span class="line">    <span class="attribute">color</span>:red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>类选择器<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.class</span>属性值</span><br><span class="line">&#123;</span><br><span class="line">    <span class="attribute">color</span>:red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<h2 id="CSS选择器"><a href="#CSS选择器" class="headerlink" title="CSS选择器"></a>CSS选择器</h2><ul>
+<li><p>选择器作用：根据不同需求把不同的标签选出来，选择标签</p>
+</li>
+<li><p>CSS做了两件事</p>
+<ul>
+<li>选择标签</li>
+<li>设置样式</li>
 </ul>
 </li>
-<li>组合选择器<ul>
+<li><p>基础选择器</p>
+<ul>
+<li><p>标签选择器：根据元素名称选择HTML元素</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;   //选中了所有的<span class="selector-tag">p</span>标签</span><br><span class="line">    <span class="attribute">color</span>: red; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>id选择器：只能调用一次，用于页面唯一性的元素上面</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#id</span>名  &#123;</span><br><span class="line">    <span class="attribute">color</span>: red; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>类选择器：样式点定义  结构类（class）调用  一个或多个（只有某一个标签需要红色，直接class=”red”就行）</p>
+  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.类名 &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>多类名：一个标签可以使用多个类名，中间需要用空格隔开（class=”red font”）<ul>
+<li>使用场景</li>
+</ul>
+  1.可以把一些标签元素相同的样式（共同部分）放到一个类里面<br>  2.这些标签可以调用这个公共的类，然后在调用自己特有的类</li>
+</ul>
+</li>
+<li><p>通配选择器</p>
+  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>组合选择器</p>
+<ul>
 <li>后代选择器；div p (通过空格连接)<br>  div内的所有p元素</li>
 <li>子代选择器：div &gt; p (通过大于号连接)<br>  只能选择到子代的p不能选择孙辈的</li>
 </ul>
 </li>
-<li><h2 id="伪类选择器：属于类选择器的一种，根据特定状态选取元素"><a href="#伪类选择器：属于类选择器的一种，根据特定状态选取元素" class="headerlink" title="伪类选择器：属于类选择器的一种，根据特定状态选取元素"></a>伪类选择器：属于类选择器的一种，根据特定状态选取元素</h2>  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span>:鼠标行为</span><br><span class="line">&#123;</span><br><span class="line">    <span class="attribute">color</span>:red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li><p>伪类选择器：属于类选择器的一种，根据特定状态选取元素</p>
 <ul>
+<li><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span>:鼠标行为</span><br><span class="line">&#123;</span><br><span class="line">    <span class="attribute">color</span>:red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li>鼠标点击前： :link</li>
 <li>鼠标点击后： :visited</li>
 <li>鼠标悬停：   :hover</li>
 <li>鼠标点击时： :active  </li>
 </ul>
 </li>
-<li>伪元素选择器<ul>
-<li>可以设置元素指定部分的样式，主要用来设置元素内文本的首字母，首行样式，或是在元素内容之前或之后插入内容</li>
-<li><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span>::设置内容</span><br><span class="line">&#123;</span><br><span class="line">    <span class="attribute">color</span>:red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>首字母：              ::first-letter</li>
-<li>首行样式:             ::first-line</li>
-<li>元素内容之前:         ::before</li>
-<li>之后插入内容:         ::after</li>
-<li>更改选中文本的样式:    ::selection</li>
-</ul>
-</li>
-<li>css属性选择器<ul>
+<li><p>css属性选择器</p>
+<ul>
 <li>根据属性和属性值来查找元素</li>
 <li><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-attr">[targe]</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="attribute">color</span>:red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
@@ -181,8 +212,57 @@
 <hr>
 <br>
 
-<h2 id="文本设置"><a href="#文本设置" class="headerlink" title="文本设置"></a>文本设置</h2><ul>
-<li>文本水平对齐<br>  属性：text-align<br>  属性值：right left center  justify(两边对齐)</li>
+<h2 id="复合选择器"><a href="#复合选择器" class="headerlink" title="复合选择器"></a>复合选择器</h2><ul>
+<li>后代选择器：选择父元素的子元素<br><img src="/image/64.png"></li>
+<li>子选择器：必须选择亲儿子<br><img src="/image/65.png"></li>
+<li>并集选择器：可以选择多组标签，同时为他们定义相对的样式（用于集体声明）<br><img src="/image/27.jpg"></li>
+<li>伪元素选择器<ul>
+<li>用于向某些选择器添加特殊的效果，如给链接添加特殊效果</li>
+<li>最大特特点是用冒号（:）<ul>
+<li>链接伪类选择器</li>
+</ul>
+  1.顺序不能变换LVHA（link、visited、hover、active）<br>  2.a链接在浏览器中有默认样式，需要单独指定样式<br>  <img src="/image/28.jpg"></li>
+</ul>
+</li>
+<li>:focus伪类选择器<br><img src="/image/66.png"></li>
+</ul>
+<hr>
+<br>
+
+<h2 id="CSS字体属性"><a href="#CSS字体属性" class="headerlink" title="CSS字体属性"></a>CSS字体属性</h2><ul>
+<li><img src="/image/61.png"></li>
+<li>字体系列font-family  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">font-family</span>: <span class="string">&quot;微软雅黑&quot;</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>字体大小font-size  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">20px</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>字体粗细font-weight  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;  //数字表示大小</span><br><span class="line">    <span class="attribute">font-weight</span>: <span class="number">700</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>文字样式font-style</li>
+<li>CSS字体复合属性<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;  </span><br><span class="line">    <span class="attribute">font-style</span>: italic;</span><br><span class="line">    <span class="attribute">font-weight</span>: <span class="number">700</span>; </span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">16px</span>;</span><br><span class="line">    <span class="attribute">font-family</span>: <span class="string">&quot;微软雅黑&quot;</span>; </span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<br>
+
+<h2 id="CSS文本外观属性设置"><a href="#CSS文本外观属性设置" class="headerlink" title="CSS文本外观属性设置"></a>CSS文本外观属性设置</h2><ul>
+<li><img src="/image/63.png"></li>
+<li>文本颜色color</li>
+<li>对齐文本<ul>
+<li>text-align：水平对齐(左对齐left（默认）、右对齐right、居中对齐center)<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;  </span><br><span class="line">    <span class="attribute">text-align</span>: center; </span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>装饰文本<ul>
+<li>text-decoration属性可以给文本添加下划线、删除线、上划线</li>
+<li>属性值：underline、line-through、overlne</li>
+</ul>
+</li>
+<li>文本缩进<ul>
+<li>text-indent属性指定文本的第一行缩进，通常是将段落的首行缩进</li>
+<li>属性值：20px/2em</li>
+<li>em相对单位，1em一个文字的大小</li>
+</ul>
+</li>
+<li>行间距<ul>
+<li>line-height控制文字行与行之间的距离</li>
+<li><img src="/image/62.png"></li>
+</ul>
+</li>
 <li>文本垂直对齐<ul>
 <li>属性：vertical-align</li>
 <li>属性值：baseline(基线对齐)<pre><code>   text—top(文本顶部对齐)
@@ -193,37 +273,35 @@
 </li>
 </ul>
 </li>
-<li>行高<ul>
-<li>属性：line-height</li>
+</ul>
+<hr>
+<br>
+
+<h2 id="CSS的元素显示模式"><a href="#CSS的元素显示模式" class="headerlink" title="CSS的元素显示模式"></a>CSS的元素显示模式</h2><ul>
+<li>块元素<br><img src="/image/67.png"></li>
+<li>行内元素：例外a里面可以放块元素<br><img src="/image/68.png"></li>
+<li>元素显示模式转换（display:block）<ul>
+<li>行–&gt;块<br><img src="/image/69.png"></li>
+<li>块–&gt;行（display:line）</li>
 </ul>
 </li>
-<li>work-base<ul>
-<li>属性：用于指定文本单词的间距，只对英文有用</li>
-</ul>
-</li>
 </ul>
 <hr>
 <br>
 
-<h2 id="css装饰"><a href="#css装饰" class="headerlink" title="css装饰"></a>css装饰</h2><ul>
-<li>text-decoration-line: 装饰线</li>
-<li>text-decoration-style: 装饰线风格</li>
-<li>text-decoration-thickness: 装饰线厚度</li>
+<h2 id="CSS的背景属性"><a href="#CSS的背景属性" class="headerlink" title="CSS的背景属性"></a>CSS的背景属性</h2><ul>
+<li>背景颜色<br><img src="/image/70.png"></li>
+<li>背景图片<br>background-image属性描述了元素的背景图像。实际开发常见于logo或者一些装饰性的小图片或者是超大的背景图片,优点是非常便于控制位置.(精灵图也是一种运用场景)<br><img src="/image/71.png"></li>
+<li>背景平铺(避免重复)<br><img src="/image/72.png"></li>
+<li>背景图片位置<br><img src="/image/73.png"></li>
+<li>背景图像固定<br><img src="/image/74.png"></li>
+<li>背景色半透明<br><img src="/image/76.png"></li>
+<li>背景复合写法<br><img src="/image/75.png"></li>
 </ul>
 <hr>
 <br>
 
-<h2 id="文本字体"><a href="#文本字体" class="headerlink" title="文本字体"></a>文本字体</h2><ul>
-<li>font-famliy: 指定文本字体</li>
-<li>font-size: 设置文本大小</li>
-<li>em：相对大小</li>
-<li>font-style: 设置文本斜体</li>
-<li>font-weight: 文本粗细</li>
-</ul>
-<hr>
-<br>
-
-<h2 id="css边框"><a href="#css边框" class="headerlink" title="css边框"></a>css边框</h2><ul>
+<h2 id="CSS边框"><a href="#CSS边框" class="headerlink" title="CSS边框"></a>CSS边框</h2><ul>
 <li>border-style: 指定设置什么样的边框</li>
 <li>border-width: 宽度</li>
 <li>border-color</li>
@@ -231,16 +309,10 @@
 <hr>
 <br>
 
-<h2 id="css背景"><a href="#css背景" class="headerlink" title="css背景"></a>css背景</h2><ul>
-<li>background-image: url(图片路径)</li>
-<li>background-repeat: 不重复(不允许平铺)</li>
-<li>background-position: 位置</li>
-<li>background-color</li>
-</ul>
-<hr>
+<h2 id="CSS背景"><a href="#CSS背景" class="headerlink" title="CSS背景"></a>CSS背景</h2><hr>
 <br>
 
-<h2 id="css轮廓"><a href="#css轮廓" class="headerlink" title="css轮廓"></a>css轮廓</h2><ul>
+<h2 id="CSS轮廓"><a href="#CSS轮廓" class="headerlink" title="CSS轮廓"></a>CSS轮廓</h2><ul>
 <li>outline-style</li>
 <li>outline-offset: 指定轮廓与元素或空间边缘的距离</li>
 <li>outline-color</li>
@@ -249,7 +321,7 @@
 <hr>
 <br>
 
-<h2 id="边距"><a href="#边距" class="headerlink" title="边距"></a>边距</h2><ul>
+<h2 id="CSS边距"><a href="#CSS边距" class="headerlink" title="CSS边距"></a>CSS边距</h2><ul>
 <li>margin(四个方向)</li>
 <li>margin-top</li>
 <li>margin-bottom</li>
@@ -259,7 +331,8 @@
 <hr>
 <br>
 
-<h2 id="css填充属性"><a href="#css填充属性" class="headerlink" title="css填充属性"></a>css填充属性</h2><ul>
+
+<h2 id="CSS填充属性"><a href="#CSS填充属性" class="headerlink" title="CSS填充属性"></a>CSS填充属性</h2><ul>
 <li>padding(四个方向)</li>
 <li>padding-top</li>
 <li>padding-bottom</li>
@@ -270,7 +343,23 @@
 <br>
 
 <h2 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h2><ul>
-<li><img src="/image/28.png"></li>
+<li>网页布局<ul>
+<li>先准备好相关的网页元素，网页元素基本都是盒子</li>
+<li>利用CSS设置好盒子的样式，然后摆到相应的位置</li>
+<li>往盒子里面装内容</li>
+</ul>
+</li>
+<li>盒子模型<ul>
+<li>border 边框</li>
+<li>conten 内容</li>
+<li>padding 内边距，边框与内容之间的距离</li>
+<li>margin 外边距，盒子之间的距离<br><img src="/image/28.png"></li>
+</ul>
+</li>
+<li>border（上边框—border-top）<br>边框的宽度border-width<br>边框的样式border-style<br>边框的颜色border-color<br>合并相邻的边框border-collapse：collapse<br>简写：border: 5px soild red;(没有顺序)<br><img src="/image/77.png"></li>
+<li>padding<br>padding-top上边距<br>padding-bottom下边距<br>padding-left左边距<br>padding-right右边距<br><img src="/image/78.png" alt="简写"> </li>
+<li>margin<br>margin-top上外边距<br>margin-bottom下外边距<br>margin-left左外边距<br>margin-right右外边距</li>
+<li>清除内外边距<br>margin：0；<br>padding：0；</li>
 </ul>
  
       <!-- reward -->

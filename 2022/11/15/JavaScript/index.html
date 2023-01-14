@@ -91,7 +91,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">674</span>
+            <span class="post-count">1.2k</span>
         </span>
     </span>
 
@@ -100,7 +100,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">2 min</span>
+            <span class="post-count">5 min</span>
         </span>
     </span>
 </div>
@@ -213,8 +213,8 @@
 <hr>
 <br>
 
-<h2 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h2><ul>
-<li>Document Object Model 文档对象模型</li>
+<h2 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h2><p>Document Object Model 编程接口，改变网页的内容、结构、样式。实际开发中主要用来操作元素的</p>
+<ul>
 <li>将标记语言的各个组成部分封装为对象<ul>
 <li>Document 整个文档对象</li>
 <li>Element 元素对象</li>
@@ -223,12 +223,14 @@
 <li>Comment 注释对象</li>
 </ul>
 </li>
-<li>JS 通过 DOM 能对HTML进行操作<ul>
-<li>改变HTML元素的内容</li>
-<li>改变HTML元素的样式</li>
-<li>对HTML DOM 事件做出反应</li>
+<li>获取元素 <ul>
+<li>根据id获取元素<br><img src="/image/79.png"></li>
+<li>根据标签名获取元素</li>
 </ul>
-</li>
+  1.使用getElementsByTagName(‘div’)方法可以返回带有指定标签名的对象的集合。<br>  2.还可以获取某个元素(父元素)内部所有指定标签名的子元素,element.getElementsByTagName ( ‘标签名’);<ul>
+<li>通过HTML5新增的方法获取</li>
+</ul>
+  1.document.getElementsByClassName ( ‘类名’);<br>  根据类名返回元素对象集合<br>  2.queryselector返回指定选择器的第一个元素对象var firstBoX = document.queryselector( .box );</li>
 </ul>
 <hr>
 <br>
@@ -243,7 +245,7 @@
 <li>方式一 通过HTML标签中的事件属性进行绑定</li>
 <li><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=<span class="string">&quot;button&quot;</span> onclick = <span class="string">&#x27;on()&#x27;</span>&gt;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">on</span>(<span class="params"></span>)&#123;</span><br><span class="line"><span class="title function_">alert</span>(<span class="string">&quot;点击&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li>方式二 通过DOM元素属性绑定</li>
-<li><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=<span class="string">&quot;button&quot;</span> id = <span class="string">&quot;btn&quot;</span>&gt;</span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;btn&quot;</span>).<span class="property">onclick</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line"><span class="title function_">alert</span>(<span class="string">&quot;点击&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//事件三要素：事件源  事件类型  事件处理程序</span></span><br><span class="line">&lt;input type=<span class="string">&quot;button&quot;</span> id = <span class="string">&quot;btn&quot;</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//1.事件源</span></span><br><span class="line"><span class="keyword">var</span> btn = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;btn&quot;</span>);</span><br><span class="line"><span class="comment">//2.事件类型：鼠标点击（onclick） 鼠标经过  键盘按下 </span></span><br><span class="line"><span class="comment">//3.事件处理程序：通过一个函数赋值的方式完成</span></span><br><span class="line">btn.<span class="property">onclick</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&quot;点击&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 <li>常用事件<table>
@@ -284,7 +286,30 @@
 </tbody></table>
 </li>
 </ul>
- 
+<hr>
+<br>
+
+<h2 id="操作元素"><a href="#操作元素" class="headerlink" title="操作元素"></a>操作元素</h2><ul>
+<li>改变元素内容<br>element.innerText—不识别html标签<br>element.innerHTML—识别html标签<br><img src="/image/80.png"></li>
+<li>修改元素属性<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vat btn = <span class="variable language_">document</span>.<span class="title function_">queryselector</span>(<span class="string">&#x27;button&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> img = <span class="variable language_">document</span>.<span class="title function_">queryselector</span>(<span class="string">&#x27;img&#x27;</span>);</span><br><span class="line">btn.<span class="property">oonclick</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    img.<span class="property">src</span> = <span class="string">&#x27;image/ldh.jpg&#x27;</span>;</span><br><span class="line">&#125;    </span><br></pre></td></tr></table></figure></li>
+<li>操作表单属性(示例：用户输入密码框 )<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=<span class="string">&quot;text&quot;</span> value=<span class="string">&quot;请输入内容&quot;</span>&gt;</span><br><span class="line"></span><br><span class="line">vat btn = <span class="variable language_">document</span>.<span class="title function_">queryselector</span>(<span class="string">&#x27;button&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> input = <span class="variable language_">document</span>.<span class="title function_">queryselector</span>(<span class="string">&#x27;input&#x27;</span>);</span><br><span class="line">btn.<span class="property">oonclick</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    input.<span class="property">value</span> = <span class="string">&#x27;xxx&#x27;</span>;</span><br><span class="line">&#125;    </span><br></pre></td></tr></table></figure></li>
+<li>样式属性操作<br>element.style行内样式操作<br>element.className类名样式操作<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">vat div = <span class="variable language_">document</span>.<span class="title function_">queryselector</span>(<span class="string">&#x27;div&#x27;</span>);</span><br><span class="line">div.<span class="property">oonclick</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    div.<span class="property">style</span>.<span class="property">width</span> = 20px</span><br><span class="line">    <span class="comment">// 驼峰命名法</span></span><br><span class="line">    div.<span class="property">style</span>.<span class="property">backgroundColor</span> = <span class="string">&#x27;pink&#x27;</span></span><br><span class="line">&#125;    </span><br></pre></td></tr></table></figure></li>
+<li>表格变色<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取tbody中所有的行 </span></span><br><span class="line"><span class="keyword">var</span> trs = <span class="variable language_">document</span>.<span class="title function_">queryselecto</span>(<span class="string">&quot;tbody&quot;</span>).<span class="title function_">queryselectoAll</span>(<span class="string">&#x27;tr&#x27;</span>);</span><br><span class="line"><span class="comment">//利用循环注册绑定事件</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i =<span class="number">0</span> ; i &lt;trs.<span class="property">length</span>;i++)&#123;</span><br><span class="line">    <span class="comment">//鼠标经过</span></span><br><span class="line">    trs[i].<span class="property">onmouseover</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">className</span> = <span class="string">&#x27;pg&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//鼠标离开</span></span><br><span class="line">    trs[i].<span class="property">onmouseout</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">className</span> = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure></li>
+<li>获取元素属性<ul>
+<li>element.属性: div.id<br>获取内置属性</li>
+<li>element.getAttribute(‘属性’)<br>获取自己定义的一些属性值</li>
+</ul>
+</li>
+</ul>
+<hr>
+<br>
+
+<h2 id="获取当前时间"><a href="#获取当前时间" class="headerlink" title="获取当前时间"></a>获取当前时间</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">getDate</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">getDate</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> date = <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line">        <span class="keyword">var</span> year = date.<span class="title function_">getFullYear</span>();</span><br><span class="line">        <span class="keyword">var</span> month =date.<span class="title function_">getMonth</span>() + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">var</span> day = date.<span class="title function_">getDate</span>();</span><br><span class="line">        <span class="keyword">var</span> arr = [<span class="string">&#x27;星期天&#x27;</span>, <span class="string">&#x27;星期六&#x27;</span>, <span class="string">&#x27;星期五&#x27;</span>,<span class="string">&#x27;星期四&#x27;</span>,<span class="string">&#x27;星期三&#x27;</span>, <span class="string">&#x27;星期二&#x27;</span> ,<span class="string">&#x27;星期一&#x27;</span>];</span><br><span class="line">        <span class="keyword">var</span> m =date.<span class="title function_">getDay</span>();</span><br><span class="line">        <span class="keyword">return</span> year + <span class="string">&#x27;年&#x27;</span> + month + <span class="string">&#x27;月&#x27;</span> + day + <span class="string">&#x27;日&#x27;</span> + arr[m]; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<br>
+
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2> 
       <!-- reward -->
       
       <div id="reword-out">
