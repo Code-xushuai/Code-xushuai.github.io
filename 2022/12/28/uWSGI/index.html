@@ -12,7 +12,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>uWSGI |  Xu</title>
+      <title>Web项目部署 |  Xu</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -75,7 +75,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  uWSGI
+  Web项目部署
 </h1>
  
 
@@ -91,7 +91,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">171</span>
+            <span class="post-count">849</span>
         </span>
     </span>
 
@@ -100,7 +100,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">3 min</span>
         </span>
     </span>
 </div>
@@ -115,7 +115,118 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h2 id="uWSGl"><a href="#uWSGl" class="headerlink" title="uWSGl"></a>uWSGl</h2><pre><code>uWSGI是一个Web服务器，它实现了WSGl协议、uwsgi、http等协议。Nginx中HttpUwsgiModule的作用是与uWSGI服务器进行交换。
+  <h2 id="本质三件事"><a href="#本质三件事" class="headerlink" title="本质三件事"></a>本质三件事</h2><hr>
+<ol>
+<li><p>租服务器 + 配置环境<br> (1) 使用Centos</p>
+<pre><code> - 部署 linux系统
+</code></pre>
+<p> (2) 公网IP<br> (3) 登录服务器  (一般远程连接服务器)</p>
+<pre><code> - SSH工具
+     - win（xshell）
+         ssh root@公网IP   
+     - mac (item2)
+</code></pre>
+<p> (4) 关于端口</p>
+<pre><code> IP地址 ---&gt; 电脑
+ 端口   ---&gt; 各种各样的程序和服务
+ 22   : SSH
+ 3306 : MySQL
+ 6379 : Redis
+ 80   : (Http)编写网站
+ 443  ：HTTPS
+</code></pre>
+<p> (5) 安全组 （配置端口是否允许）</p>
+<pre><code> 租服务器的网站上配置
+</code></pre>
+</li>
+<li><p>代码放在服务器中<br> (1) git<br> (2) git代码仓库：github、gitee、gitlab</p>
+<pre><code> - 一般创建代码仓库名与本地项目文件名一致
+
+ - 不需要上传的文件需要在项目文件的下配置.gitignore
+</code></pre>
+<p> <img src="/image/30.jpg"></p>
+<pre><code> - 仓库地址：https://gitee.com/code-xs/django_file
+</code></pre>
+<p> (5) git命令</p>
+<pre><code> - 一次性命令（本地与仓库连接：配置）
+     &gt;&gt;&gt; git config --global user.name &quot;上传人的名字&quot;
+     &gt;&gt;&gt; git config --global user.email &quot;上传人的邮箱&quot;&quot;
+
+     &gt;&gt;&gt; cd day28 ：进入项目文件下打开git
+     &gt;&gt;&gt; git init : 初始化
+     &gt;&gt;&gt; git remote add origin 仓库地址
+ - 上传到仓库
+     &gt;&gt;&gt; git add .
+     &gt;&gt;&gt; git commit -m &quot;init&quot; : &quot; &quot;为备注信息
+     &gt;&gt;&gt; git push origin master
+</code></pre>
+<p> （6）下载代码（下载到服务器）</p>
+<pre><code> 使用工具远程连接服务器xshell
+
+ - 安装git
+     &gt;&gt;&gt; yum install git -y
+ - 第一次下载代码
+     &gt;&gt;&gt; cd /data/
+     &gt;&gt;&gt; mkdirs www : 在data文件下创建www文件
+     &gt;&gt;&gt; cd /data/www/ 
+     &gt;&gt;&gt; git clone 仓库地址 
+     &gt;&gt;&gt; 码云 账户+密码
+ - 之后需要更新代码
+     &gt;&gt;&gt; cd /data/www/day28/ : 需要进入代码文件下
+     &gt;&gt;&gt; git pull origin master 
+</code></pre>
+</li>
+<li><p>程序运行起来</p>
+</li>
+</ol>
+<ul>
+<li><p>安装Python对应的版本</p>
+<ul>
+<li><p>安装gcc，用于后续安装Python时编译源码。</p>
+<pre><code>  &gt;&gt;&gt; yum install gce -y
+</code></pre>
+</li>
+<li><p>安装Python3相关依赖   </p>
+<pre><code>  &gt;&gt;&gt; yum install zlib zlib-devel -y
+  &gt;&gt;&gt; yum instal1 bzip2 bzip2-devel -y
+  &gt;&gt;&gt; yum install ncurses ncurses-devel -y
+  &gt;&gt;&gt; yum install readline readline-devel -y
+  &gt;&gt;&gt; yum instal1 openssl openssl-devel -y
+  &gt;&gt;&gt; yum instal1 xz lzma xz-devel -y
+  &gt;&gt;&gt; yum install sqlite sqlite-devel -y
+  &gt;&gt;&gt; yum instal1 gdbm gdbm-devel -y
+  &gt;&gt;&gt; yum install tk tk-devel -y
+  &gt;&gt;&gt; yum install mysql-devel -y
+  &gt;&gt;&gt; yum instal1 python-devel -y
+  &gt;&gt;&gt; yum insta1l libffi-devel -y
+</code></pre>
+</li>
+<li><p>下载源码 Python</p>
+<pre><code>  &gt;&gt;&gt; yum install wget -y
+
+  &gt;&gt;&gt; cd /data/  : 将Python放在data目录下
+  &gt;&gt;&gt; wget https://www.python.org/ftp/python/3.9.5/Python-3.9.5.tgz
+</code></pre>
+</li>
+<li><p>解压 &amp; 编译 &amp; 安装</p>
+<pre><code>  &gt;&gt;&gt; tar -xvf Python-3.9.5.tgz  ： 解压
+
+  要进入目录在编译
+  &gt;&gt;&gt; cd Python-3.9.5 
+  &gt;&gt;&gt; ./configure
+  &gt;&gt;&gt; make all
+  &gt;&gt;&gt; make install
+</code></pre>
+</li>
+<li><p>Python解释器配置豆瓣源</p>
+<pre><code>  &gt;&gt;&gt; pip3.9 config set global.index-url https://pypi.douban.com/simple/
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/image/93.png"></p>
+<h2 id="uWSGl"><a href="#uWSGl" class="headerlink" title="uWSGl"></a>uWSGl</h2><pre><code>uWSGI是一个Web服务器，它实现了WSGl协议、uwsgi、http等协议。Nginx中HttpUwsgiModule的作用是与uWSGI服务器进行交换。
 </code></pre>
 <h2 id="WSGI"><a href="#WSGI" class="headerlink" title="WSGI"></a>WSGI</h2><pre><code>Web服务器网关接口(Python Web Server Gateway Interface，缩写为WSGI)
 WSGl是一种通信协议,Flask,webpy，Django、CherryPy等等都自带WSGl，不过性能都不好。
@@ -192,7 +303,7 @@ WSGl是一种通信协议,Flask,webpy，Django、CherryPy等等都自带WSGl，�
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/uWSGI-Nginx%E9%83%A8%E7%BD%B2python%E9%A1%B9%E7%9B%AE/" rel="tag">uWSGI+Nginx部署python项目</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%83%A8%E7%BD%B2/" rel="tag">部署</a></li></ul>
 
     </footer>
   </div>

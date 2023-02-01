@@ -95,7 +95,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">3.1k</span>
+            <span class="post-count">3.2k</span>
         </span>
     </span>
 
@@ -132,6 +132,7 @@
 <li>print(“1+1=”,1+1)<br>print(“1+1=%d” %2)<br>不换行:  print(“ “,end=””)   </li>
 <li>input(): 类型为str类型，若需要其他类型要进行转换<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;请输入：&quot;</span>))</span><br></pre></td></tr></table></figure></li>
 <li>随机数产生1-10<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line">num=random.randint(<span class="number">1</span>,<span class="number">10</span>)</span><br></pre></td></tr></table></figure></li>
+<li>生成随机数列表<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">li = <span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">10</span>))  <span class="comment"># 长度10</span></span><br><span class="line">random.shuffle(li)    <span class="comment"># 生成随机数</span></span><br></pre></td></tr></table></figure></li>
 <li>range(): 循环次数<br>用于for循环</li>
 </ul>
 <br>
@@ -141,7 +142,10 @@
 <li>没有;和括号</li>
 <li>赋值时没有数据类型<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 例子 --&gt;</span><br><span class="line">a=<span class="number">10</span>   a=<span class="number">11.2</span>  a=string</span><br></pre></td></tr></table></figure></li>
 <li>2的7次方：2**7    </li>
-<li>整除 //<br></li>
+<li>整除 //</li>
+<li>遍历list列表中的值，val是列表的值<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> val <span class="keyword">in</span> <span class="built_in">list</span>:</span><br></pre></td></tr></table></figure></li>
+<li>遍历list列表中的下标，i是列表的下标<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(li)):</span><br></pre></td></tr></table></figure>
+<br></li>
 </ul>
 <hr>
 <h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><ul>
@@ -206,6 +210,7 @@
 <li>查找指定下标元素：列表.index(元素)</li>
 <li>统计列表长度：len(列表)</li>
 <li>统计列表元素出现次数：列表.count(元素)</li>
+<li>打印一个含有十个0的列表<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">count = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span> + <span class="number">1</span>)]</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 <li>tuple(元组：无法修改)<ul>
