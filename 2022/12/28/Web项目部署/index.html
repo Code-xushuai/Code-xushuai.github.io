@@ -64,7 +64,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-uWSGI"
+  id="post-Web项目部署"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -83,7 +83,7 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2022/12/28/uWSGI/" class="article-date">
+      <a href="/2022/12/28/Web%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/" class="article-date">
   <time datetime="2022-12-28T08:55:43.000Z" itemprop="datePublished">2022-12-28</time>
 </a>   
 <div class="word_count">
@@ -91,7 +91,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">849</span>
+            <span class="post-count">954</span>
         </span>
     </span>
 
@@ -100,7 +100,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">3 min</span>
+            <span class="post-count">4 min</span>
         </span>
     </span>
 </div>
@@ -176,56 +176,63 @@
      &gt;&gt;&gt; git pull origin master 
 </code></pre>
 </li>
-<li><p>程序运行起来</p>
+<li><p>程序运行起来<br>使用工具连接服务器（服务器上进行安装）<br> (1) 安装Python对应的版本</p>
+<pre><code> - 安装gcc，用于后续安装Python时编译源码。
+         &gt;&gt;&gt; yum install gce -y
+</code></pre>
+<p> (2) 安装Python3相关依赖   </p>
+<pre><code>     &gt;&gt;&gt; yum install zlib zlib-devel -y
+     &gt;&gt;&gt; yum instal1 bzip2 bzip2-devel -y
+     &gt;&gt;&gt; yum install ncurses ncurses-devel -y
+     &gt;&gt;&gt; yum install readline readline-devel -y
+     &gt;&gt;&gt; yum instal1 openssl openssl-devel -y
+     &gt;&gt;&gt; yum instal1 xz lzma xz-devel -y
+     &gt;&gt;&gt; yum install sqlite sqlite-devel -y
+     &gt;&gt;&gt; yum instal1 gdbm gdbm-devel -y
+     &gt;&gt;&gt; yum install tk tk-devel -y
+     &gt;&gt;&gt; yum install mysql-devel -y
+     &gt;&gt;&gt; yum instal1 python-devel -y
+     &gt;&gt;&gt; yum insta1l libffi-devel -y
+</code></pre>
+<p> (3) 下载源码 Python</p>
+<pre><code>     &gt;&gt;&gt; yum install wget -y
+
+     &gt;&gt;&gt; cd /data/  : 将Python放在data目录下
+     &gt;&gt;&gt; wget https://www.python.org/ftp/python/3.9.5/Python-3.9.5.tgz
+</code></pre>
+<p> (4) 解压 &amp; 编译 &amp; 安装</p>
+<pre><code>     &gt;&gt;&gt; tar -xvf Python-3.9.5.tgz  ： 解压
+
+     要进入目录在编译
+     &gt;&gt;&gt; cd Python-3.9.5 
+     &gt;&gt;&gt; ./configure
+     &gt;&gt;&gt; make all
+     &gt;&gt;&gt; make install
+</code></pre>
+<p> (5) Python解释器配置豆瓣源</p>
+<pre><code>     &gt;&gt;&gt; pip3.9 config set global.index-url https://pypi.douban.com/simple/
+</code></pre>
+</li>
+<li><p>安装虚拟环境<br> (1)安装virtulenv</p>
+<pre><code> &lt;&lt;&lt; pip3.9 install virtualenv
+</code></pre>
+<p> (2) 创建虚拟环境</p>
+<pre><code> 代码位置：
+         /data/www/day28
+ 环境位置：
+         /envs/nb
+
+ 创建存储环境的文件夹：
+         &lt;&lt;&lt; mkdir /envs  : 在根目录下创建envs文件夹
+         &lt;&lt;&lt; virtualenv /envs/nb --python=python3.9
+</code></pre>
+<p> (3) 激活虚拟环境 </p>
+<pre><code> &lt;&lt;&lt; sourcx=-[`]  
+</code></pre>
 </li>
 </ol>
-<ul>
-<li><p>安装Python对应的版本</p>
-<ul>
-<li><p>安装gcc，用于后续安装Python时编译源码。</p>
-<pre><code>  &gt;&gt;&gt; yum install gce -y
-</code></pre>
-</li>
-<li><p>安装Python3相关依赖   </p>
-<pre><code>  &gt;&gt;&gt; yum install zlib zlib-devel -y
-  &gt;&gt;&gt; yum instal1 bzip2 bzip2-devel -y
-  &gt;&gt;&gt; yum install ncurses ncurses-devel -y
-  &gt;&gt;&gt; yum install readline readline-devel -y
-  &gt;&gt;&gt; yum instal1 openssl openssl-devel -y
-  &gt;&gt;&gt; yum instal1 xz lzma xz-devel -y
-  &gt;&gt;&gt; yum install sqlite sqlite-devel -y
-  &gt;&gt;&gt; yum instal1 gdbm gdbm-devel -y
-  &gt;&gt;&gt; yum install tk tk-devel -y
-  &gt;&gt;&gt; yum install mysql-devel -y
-  &gt;&gt;&gt; yum instal1 python-devel -y
-  &gt;&gt;&gt; yum insta1l libffi-devel -y
-</code></pre>
-</li>
-<li><p>下载源码 Python</p>
-<pre><code>  &gt;&gt;&gt; yum install wget -y
-
-  &gt;&gt;&gt; cd /data/  : 将Python放在data目录下
-  &gt;&gt;&gt; wget https://www.python.org/ftp/python/3.9.5/Python-3.9.5.tgz
-</code></pre>
-</li>
-<li><p>解压 &amp; 编译 &amp; 安装</p>
-<pre><code>  &gt;&gt;&gt; tar -xvf Python-3.9.5.tgz  ： 解压
-
-  要进入目录在编译
-  &gt;&gt;&gt; cd Python-3.9.5 
-  &gt;&gt;&gt; ./configure
-  &gt;&gt;&gt; make all
-  &gt;&gt;&gt; make install
-</code></pre>
-</li>
-<li><p>Python解释器配置豆瓣源</p>
-<pre><code>  &gt;&gt;&gt; pip3.9 config set global.index-url https://pypi.douban.com/simple/
-</code></pre>
-</li>
-</ul>
-</li>
-</ul>
 <p><img src="/image/93.png"></p>
+<hr>
 <h2 id="uWSGl"><a href="#uWSGl" class="headerlink" title="uWSGl"></a>uWSGl</h2><pre><code>uWSGI是一个Web服务器，它实现了WSGl协议、uwsgi、http等协议。Nginx中HttpUwsgiModule的作用是与uWSGI服务器进行交换。
 </code></pre>
 <h2 id="WSGI"><a href="#WSGI" class="headerlink" title="WSGI"></a>WSGI</h2><pre><code>Web服务器网关接口(Python Web Server Gateway Interface，缩写为WSGI)
@@ -298,7 +305,7 @@ WSGl是一种通信协议,Flask,webpy，Django、CherryPy等等都自带WSGl，�
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2022/12/28/uWSGI/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2022/12/28/Web%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/" alt="微信分享二维码">
     </div>
 </div>
 
