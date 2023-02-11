@@ -91,7 +91,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">954</span>
+            <span class="post-count">2k</span>
         </span>
     </span>
 
@@ -100,7 +100,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">4 min</span>
+            <span class="post-count">9 min</span>
         </span>
     </span>
 </div>
@@ -213,8 +213,8 @@
 <pre><code>     &gt;&gt;&gt; pip3.9 config set global.index-url https://pypi.douban.com/simple/
 </code></pre>
 </li>
-<li><p>安装虚拟环境<br> (1)安装virtulenv</p>
-<pre><code> &lt;&lt;&lt; pip3.9 install virtualenv
+<li><p>安装虚拟环境<br> (1) 安装virtulenv</p>
+<pre><code> &gt;&gt;&gt; pip3.9 install virtualenv
 </code></pre>
 <p> (2) 创建虚拟环境</p>
 <pre><code> 代码位置：
@@ -223,15 +223,135 @@
          /envs/nb
 
  创建存储环境的文件夹：
-         &lt;&lt;&lt; mkdir /envs  : 在根目录下创建envs文件夹
-         &lt;&lt;&lt; virtualenv /envs/nb --python=python3.9
+         &gt;&gt;&gt; mkdir /envs  : 在根目录下创建envs文件夹
+         &gt;&gt;&gt; virtualenv /envs/nb --python=python3.9
 </code></pre>
 <p> (3) 激活虚拟环境 </p>
-<pre><code> &lt;&lt;&lt; sourcx=-[`]  
+<pre><code> &gt;&gt;&gt; source /envs/nb/bin/activate
+</code></pre>
+<p> <img src="/image/31.jpg" alt="已激活虚拟环境"></p>
+</li>
+<li><p>uwsgi（更新代码需要重新启动uwsgi）<br> (1) 安装uwsgi</p>
+<pre><code> 1.前提需要先激活虚拟环境 
+ source /envs/nb/bin/activate
+ 2.在安装wusgi
+ pip install uwsgi
+</code></pre>
+<p> (2) 基于uwsgi运行flask项目</p>
+<pre><code> 配置文件（推荐）
+ 1. 创建nb_uwsgi.ini
+     - 现在本地的项目跟目录下创建nb_uwsgi.ini文件
+     - 在上传到仓库
+     - 浏览器拉下来
+ 2. 配置文件
+ nb_uwsgi.ini
+     [uwsgi]
+         socket = 127.0.0.1:8001
+         chdir =/data/www/day28  ：项目文件
+         wsgi-file = app.py
+         cal1able = app
+         processes = 1     : 进程（几核几个进程）
+         virtualenv = /envs/nb/   : 虚拟环境位置
+ 3. 执行命令 
+     &gt;&gt;&gt; source /envs/nb/bin/ activate
+     &gt;&gt;&gt; uwsgi --ini nb_uwsgi.ini &amp;   ： 启动uwsgi（加&amp;为后台一直启动）
+     ![需要找到进程号](image/94.png)
+</code></pre>
+</li>
+<li><p>Nginx<br> (1) 安装Nginx</p>
+<pre><code> &gt;&gt;&gt; yum install nginx -y
+</code></pre>
+<p> (2) 配置</p>
+<pre><code> - 普通请求     -&gt;  8001端口（找到uwsgi监听的端口）
+ - /static/     -&gt;  /data/www/day28/static (找到static静态文件)
+
+ nginx的默认配置文件路径  /etc/nginx/nginx.conf 
+ - 删除默认的nginx.conf   (需要在虚拟环境激活前提下)
+     &gt;&gt;&gt; rm nginx.conf
+
+ - 新建nginx.conf  + 内容拷贝  + 保持
+    &gt;&gt;&gt; cd /etc/nginx/
+    &gt;&gt;&gt; vim nginx.conf   : 创建并打开文件（前提需要在/etc/nginx/目录下，vim相当于一个记事本）
+    &gt;&gt;&gt; i             ：变换成编辑模式 
+    &gt;&gt;&gt; ESC(按下)     ：退出编辑模式
+    &gt;&gt;&gt; :wq           : 保持并退出
+    &gt;&gt;&gt; cat nginx.conf     : 查看nginx.conf文件
+</code></pre>
+<p> (3) 启动 (接下来就需要启动uwsgi和nginx：)</p>
+<pre><code> - 启动
+     systemctl start nginx
+     systemctl stop nginx
+     systemctl restart nginx
+ - 开机启动
+     systemctl enable nginx
+</code></pre>
+<p> (4) nginx,.conf配置文件</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">user nginx;</span><br><span class="line">worker_processes auto;</span><br><span class="line">error_log /var/log/nginx/error.log;</span><br><span class="line">pid /run/nginx.pid;</span><br><span class="line"></span><br><span class="line"># Load dynamic modules. See /usr/share/doc/nginx/README.dynamic.</span><br><span class="line">include /usr/share/nginx/modules/*.conf;</span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    worker_connections 1024;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    log_format  main  &#x27;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#x27;</span><br><span class="line">                    &#x27;$status $body_bytes_sent &quot;$http_referer&quot; &#x27;</span><br><span class="line">                    &#x27;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#x27;;</span><br><span class="line"></span><br><span class="line">    access_log  /var/log/nginx/access.log  main;</span><br><span class="line"></span><br><span class="line">    sendfile            on;</span><br><span class="line">    tcp_nopush          on;</span><br><span class="line">    tcp_nodelay         on;</span><br><span class="line">    keepalive_timeout   65;</span><br><span class="line">    types_hash_max_size 4096;</span><br><span class="line"></span><br><span class="line">    include             /etc/nginx/mime.types;</span><br><span class="line">    default_type        application/octet-stream;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    upstream flask &#123;</span><br><span class="line">        server 127.0.0.1:8001;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    server &#123;</span><br><span class="line">        listen       80;</span><br><span class="line">        listen       [::]:80;</span><br><span class="line"></span><br><span class="line">        # Load configuration files for the default server block.</span><br><span class="line">        # include /etc/nginx/default.d/*.conf;</span><br><span class="line"></span><br><span class="line">        location /static &#123;</span><br><span class="line">            alias  /data/www/day28/static;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">            uwsgi_pass  flask;</span><br><span class="line">            include     uwsgi_params;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>Shell脚本 （在项目根目录下创建这两个脚本）<br> (1) 重启   reboot.sh</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env bash</span><br><span class="line"></span><br><span class="line">echo -e &quot;\033[34m--------------------wsgi process--------------------\033[0m&quot;</span><br><span class="line"></span><br><span class="line">ps -ef|grep nb_uwsgi.ini(文件名需要替换) | grep -v grep</span><br><span class="line"></span><br><span class="line">sleep 0.5</span><br><span class="line"></span><br><span class="line">echo -e &#x27;\n--------------------going to close--------------------&#x27;</span><br><span class="line"></span><br><span class="line">ps -ef |grep nb_uwsgi.ini | grep -v grep | awk &#x27;&#123;print $2&#125;&#x27; | xargs kill -9</span><br><span class="line"></span><br><span class="line">sleep 0.5</span><br><span class="line"></span><br><span class="line">echo -e &#x27;\n----------check if the kill action is correct----------&#x27;</span><br><span class="line"></span><br><span class="line">/envs/nb/bin/uwsgi  --ini nb_uwsgi.ini &amp;  &gt;/dev/null</span><br><span class="line"></span><br><span class="line">echo -e &#x27;\n\033[42;1m----------------------started...----------------------\033[0m&#x27;</span><br><span class="line">sleep 1</span><br><span class="line"></span><br><span class="line">ps -ef |grep nb_uwsgi.ini | grep -v grep</span><br></pre></td></tr></table></figure>
+<p> (2) 停止   stop.sh</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env bash</span><br><span class="line"></span><br><span class="line">echo -e &quot;\033[34m--------------------wsgi process--------------------\033[0m&quot;</span><br><span class="line"></span><br><span class="line">ps -ef |grep nb_uwsgi.ini | grep -v grep</span><br><span class="line"></span><br><span class="line">sleep 0.5</span><br><span class="line"></span><br><span class="line">echo -e &#x27;\n--------------------going to close--------------------&#x27;</span><br><span class="line"></span><br><span class="line">ps -ef |grep nb_uwsgi.ini | grep -v grep | awk &#x27;&#123;print $2&#125;&#x27; | xargs kill -9</span><br><span class="line"></span><br><span class="line">sleep 0.5</span><br></pre></td></tr></table></figure>
+<p> (3) 上传到仓库中，更新到浏览器中<br> (4) 两个脚本赋予可执行权限</p>
+<pre><code> &gt;&gt;&gt; chmod 755 reboot.sh
+ &gt;&gt;&gt; chmod 755 stop.sh
+</code></pre>
+<p> (5) 执行</p>
+<pre><code> 启动
+ &gt;&gt;&gt; ./reboot.sh
+ 停止
+ &gt;&gt;&gt; ./stop.sh
+</code></pre>
+</li>
+<li><p>项目依赖Mysql服务<br> (1) 安装MySQL服务</p>
+<pre><code> &gt;&gt;&gt; yum install mariadb-server -y    服务端
+ &gt;&gt;&gt; yum install mariadb -y           客户端
+</code></pre>
+<p> (2) 服务配置</p>
+<pre><code> 启动
+     &gt;&gt;&gt; systemctl start maridb
+     &gt;&gt;&gt; systemctl stop maridb
+ 开机启动
+     &gt;&gt;&gt; systemctl enable maridb
+</code></pre>
+<p> (3) 授权 </p>
+<pre><code> 1、登录
+     &gt;&gt;&gt; mysql -uroot -p
+ 2、创建数据库  day28db
+     &gt;&gt;&gt; CREATE DATABASE day28db DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+ 3、创建账户   s5
+     &gt;&gt;&gt; insert into mysql.user(user,host,password) values( &#39;s5&#39; , &#39;%&#39; , password(&#39; qwe123..&#39;));
+     &gt;&gt;&gt; flush privileges;
+ 4、授权
+     &gt;&gt;&gt; grant all privileges on day28db.* to s5@&#39;%&#39;;
+     &gt;&gt;&gt;  flush privileges;
+ 5、测试
+     - 远程测试
+         使用navicat远程连接服务器ip
+     - 本地测试
+         无密码登录
+</code></pre>
+</li>
+<li><p>项目依赖Redis<br>(1) 安装</p>
+<pre><code>&gt;&gt;&gt; pip install redis -y
+</code></pre>
+<p>(2) 配置</p>
+</li>
+<li><p>域名和Https  </p>
+<pre><code>域名
+    - 租域名
+    - 域名解析
+        www.5xclass.com    -&gt;82.156.54.134
+        study.5xclass.com  -&gt;82.156.54.135
+        buy. 5xclass.com   -&gt;82.156.54.131
+    - 备案(平台流程)
+Https部署
 </code></pre>
 </li>
 </ol>
 <p><img src="/image/93.png"></p>
+<br>
+
+<hr>
 <hr>
 <h2 id="uWSGl"><a href="#uWSGl" class="headerlink" title="uWSGl"></a>uWSGl</h2><pre><code>uWSGI是一个Web服务器，它实现了WSGl协议、uwsgi、http等协议。Nginx中HttpUwsgiModule的作用是与uWSGI服务器进行交换。
 </code></pre>
@@ -317,6 +437,15 @@ WSGl是一种通信协议,Flask,webpy，Django、CherryPy等等都自带WSGl，�
 
    
   <nav class="article-nav">
+    
+      <a href="/2023/02/06/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            数据分析
+          
+        </div>
+      </a>
     
     
       <a href="/2022/12/28/Restful-API/" class="article-nav-link">
