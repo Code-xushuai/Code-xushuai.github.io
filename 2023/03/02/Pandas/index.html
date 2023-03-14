@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="python">
+    <meta name="description" content="欢迎来到我的笔记空间">
+    <meta name="author" content="Xu">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-redefine.png">
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2023/03/02/pandas/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Pandas">
+    <meta property="og:description" content="欢迎来到我的笔记空间">
+    <meta property="og:url" content="http://example.com2023/03/02/Pandas/">
+    <meta property="og:image" content="/images/redefine-logo.svg">
+    <meta property="og:site_name" content="Xu">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Pandas">
+    <meta name="twitter:description" content="欢迎来到我的笔记空间">
+    <meta name="twitter:image" content="/images/redefine-logo.svg">
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-logo.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-logo.svg">
+    <meta name="theme-color" content="#005080">
+    <link rel="shortcut icon" href="/images/redefine-logo.svg">
+    
+    <title>
+        
+            Pandas -
+        
+        Xu
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/assets/fonts.css">
+
+    
+    
+    
+    
+    <script id="hexo-configurations">
+    let REDEFINE = window.REDEFINE || {};
+    REDEFINE.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN"};
+    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/images/redefine-avatar.svg","favicon":"/images/redefine-logo.svg","article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"https://evan.beee.top/img/wallhaven-wqery6-light.webp","dark":"https://evan.beee.top/img/wallhaven-wqery6-dark.webp"},"title_color":{"light":"#fff","dark":"#d1d1b6"},"description":"Xu","custom_font":{"enable":false,"font_family":null,"font_url":null}},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":true},"code_block":{"copy":true,"style":"mac","custom_font":{"enable":false,"font_family":null,"font_url":null}},"pjax":{"enable":true},"lazyload":{"enable":true},"friend_links":{"columns":2},"home_article":{"date_format":"auto","category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":3}},"plugins":{"aplayer":{"enable":false,"audio":[{"name":null,"artist":null,"url":null,"cover":null},{"name":null,"artist":null,"url":null,"cover":null}]}}};
+    REDEFINE.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+    
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="menu-wrapper">
+    
+    <div class="menu-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                Xu
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        首页
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/archives"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-archive"></i>
+                                        
+                                        归档
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    target="_blank" rel="noopener" href="https://status.evanluo.top/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-chart-bar"></i>
+                                        
+                                        状态
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-regular fa-user"></i>
+                                        
+                                        关于&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a href="/about">我
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a target="_blank" rel="noopener" href="https://code-xushuai.github.io">BLOG
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/friends">FRIENDS
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-regular fa-link"></i>
+                                        
+                                        友链&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a target="_blank" rel="noopener" href="https://roweller.github.io/">ROWLLER
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a target="_blank" rel="noopener" href="https://Krisxf.github.io/">KRISXF
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a target="_blank" rel="noopener" href="https://redefine-docs.ohevan.com/docs/intro">主题文档
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="menu-drawer">
+        <ul class="drawer-menu-list">
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                首页
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/archives"  >
+                             
+                                
+                                    <i class="fa-regular fa-archive"></i>
+                                
+                                归档
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        target="_blank" rel="noopener" href="https://status.evanluo.top/"  >
+                             
+                                
+                                    <i class="fa-regular fa-chart-bar"></i>
+                                
+                                状态
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-regular fa-user"></i>
+                                
+                                关于&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/about">我</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" target="_blank" rel="noopener" href="https://code-xushuai.github.io">BLOG</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/friends">FRIENDS</a>
+                            </li>
+                        
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-regular fa-link"></i>
+                                
+                                友链&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" target="_blank" rel="noopener" href="https://roweller.github.io/">ROWLLER</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" target="_blank" rel="noopener" href="https://Krisxf.github.io/">KRISXF</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" target="_blank" rel="noopener" href="https://redefine-docs.ohevan.com/docs/intro">主题文档</a>
+                            </li>
+                        
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+            
+                <div class="article-title">
+                    <h1 class="article-title-regular">Pandas</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/redefine-avatar.svg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Xu</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="pc">2023-03-02 14:29:48</span>
+        <span class="mobile">2023-03-02 14:29</span>
+        <span class="hover-info">创建时间</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="pc">2023-03-14 23:13:58</span>
+            <span class="mobile">2023-03-14 23:13</span>
+            <span class="hover-info">更新时间</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">数据分析</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <h2 id="简介"><a class="markdownIt-Anchor" href="#简介">#</a> 简介</h2>
+<ul>
+<li>Pandas 是 Python 语言的一个扩展程序库，用于数据分析。</li>
+<li>Pandas 是一个开放源码、BSD 许可的库，提供高性能、易于使用的数据结构和数据分析工具。</li>
+<li>Pandas 一个强大的分析结构化数据的工具集，基础是 Numpy（提供高性能的矩阵运算）</li>
+<li>Pandas 可以从各种文件格式比如 CSV、JSON、SQL、Microsoft Excel 导入数据。</li>
+<li>Pandas 可以对各种数据进行运算操作，比如归并、再成形、选择，还有数据清洗和数据加工特征。</li>
+<li>Pandas 广泛应用在学术、金融、统计学等各个数据分析领域。</li>
+</ul>
+<hr>
+<br>
+<h2 id="pandas-应用"><a class="markdownIt-Anchor" href="#pandas-应用">#</a> Pandas 应用</h2>
+<p>Pandas 的主要数据结构是 Series （一维数据）与 DataFrame（二维数据），这两种数据结构足以处理金融、统计、社会科学、工程等领域里的大多数典型用例。</p>
+<ul>
+<li>
+<p>Series 是一种类似于一维数组的对象，它由一组数据（各种 Numpy 数据类型）以及一组与之相关的数据标签（即索引）组成。</p>
+</li>
+<li>
+<p>DataFrame 是一个表格型的数据结构，它含有一组有序的列，每列可以是不同的值类型（数值、字符串、布尔型值）。DataFrame 既有行索引也有列索引，它可以被看做由 Series 组成的字典（共同用一个索引）。</p>
+</li>
+</ul>
+<hr>
+<br>
+<h2 id="pandas-安装"><a class="markdownIt-Anchor" href="#pandas-安装">#</a> Pandas 安装</h2>
+<ul>
+<li>
+<p>python 解释器安装 pandas 模块<br>
+ pip install pandas</p>
+</li>
+<li>
+<p>读取 Excel 文件读取数据的依赖库<br>
+ pip install xlrd<br>
+pip install xlwt</p>
+</li>
+</ul>
+<hr>
+<br>
+<h2 id="pandas-数据结构-series"><a class="markdownIt-Anchor" href="#pandas-数据结构-series">#</a> Pandas 数据结构 - Series</h2>
+<ol>
+<li>Pandas Series 类似表格中的一个列（column），类似于一维数组，可以保存任何数据类型。</li>
+<li>可以 Series 看成一个定长的有序字典</li>
+</ol>
+<ul>
+<li>Series 由索引（index）和列组成，函数如下：<br>
+pandas.Series( data, index, dtype, name, copy)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">data</td>
+<td style="text-align:left">一组数据（ndarray 类型）</td>
+</tr>
+<tr>
+<td style="text-align:left">index</td>
+<td style="text-align:left">数据索引标签，如果不指定默认从零开开始</td>
+</tr>
+<tr>
+<td style="text-align:left">dtype</td>
+<td style="text-align:left">数据类型，默认会自己判断</td>
+</tr>
+<tr>
+<td style="text-align:left">name</td>
+<td style="text-align:left">设置名称</td>
+</tr>
+<tr>
+<td style="text-align:left">copy</td>
+<td style="text-align:left">拷贝数据，默认为 false</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>构造方法
+<ul>
+<li>列表构造（副本）</li>
+<li>ndarray 构造（引用）</li>
+<li>字典构造
+<ul>
+<li>键值对访问</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>示例一</li>
+</ul>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">b = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">a = pd.Series(b)</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 根据索引值读取数据:</span></span><br><span class="line"><span class="built_in">print</span>(a[<span class="number">1</span>])  <span class="comment"># 2</span></span><br></pre></td></tr></table></figure></div>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/103.png"
+                      alt="从上图可知，如果没有指定索引，索引值就从 0 开始，我们可以根据索引值读取数据"
+                ></p>
+<ul>
+<li>示例二<br>
+可以指定索引值</li>
+</ul>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="string">&quot;Google&quot;</span>, <span class="string">&quot;Runoob&quot;</span>, <span class="string">&quot;Wiki&quot;</span>]</span><br><span class="line"></span><br><span class="line">b = pd.Series(a,index = [<span class="string">&quot;x&quot;</span>, <span class="string">&quot;y&quot;</span>, <span class="string">&quot;z&quot;</span>])</span><br><span class="line"><span class="built_in">print</span>(b)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 根据索引值读取数据:</span></span><br><span class="line"><span class="built_in">print</span>(b[<span class="string">&#x27;x&#x27;</span>])  <span class="comment"># Google</span></span><br></pre></td></tr></table></figure></div>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/104.png"
+                      alt=""
+                ></p>
+<ul>
+<li>示例三<br>
+使用 key/value 对象，类似字典来创建 Series</li>
+</ul>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;<span class="number">1</span>: <span class="string">&quot;Google&quot;</span>, <span class="number">2</span>: <span class="string">&quot;Runoob&quot;</span>, <span class="number">3</span>: <span class="string">&quot;Wiki&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line">b = pd.Series(a)</span><br><span class="line"><span class="built_in">print</span>(b)</span><br></pre></td></tr></table></figure></div>
+<p>如果我们只需要字典中的一部分数据，只需要指定需要数据的索引即可</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;<span class="number">1</span>: <span class="string">&quot;Google&quot;</span>, <span class="number">2</span>: <span class="string">&quot;Runoob&quot;</span>, <span class="number">3</span>: <span class="string">&quot;Wiki&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line">b = pd.Series(a, index = [<span class="number">1</span>, <span class="number">2</span>])</span><br><span class="line"><span class="built_in">print</span>(b)</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>设置 Series 名称参数</li>
+</ul>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;<span class="number">1</span>: <span class="string">&quot;Google&quot;</span>, <span class="number">2</span>: <span class="string">&quot;Runoob&quot;</span>, <span class="number">3</span>: <span class="string">&quot;Wiki&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line">b = pd.Series(a, index = [<span class="number">1</span>, <span class="number">2</span>], name=<span class="string">&#x27;xu&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(b)</span><br></pre></td></tr></table></figure></div>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/105.png"
+                      alt=""
+                ></p>
+<ul>
+<li>索引<br>
+包含 numpy 的所有索引和切片</li>
+</ul>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;<span class="string">&quot;tom&quot;</span>: <span class="string">&quot;Google&quot;</span>, <span class="string">&quot;alax&quot;</span>: <span class="string">&quot;Runoob&quot;</span>, <span class="string">&#x27;xs&#x27;</span>: <span class="string">&quot;Wiki&quot;</span>&#125;</span><br><span class="line">b = pd.Series(a)</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">1. 显示索引访问，类似字典的键值对访问</span></span><br><span class="line"><span class="string">b[&quot;tom&quot;] ---&gt; Google</span></span><br><span class="line"><span class="string">b[[&quot;tom&quot;,&quot;alax&quot;]] ---&gt;Google,Runoob</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">2.使用loc访问</span></span><br><span class="line"><span class="string">b.loc[&quot;tom&quot;]</span></span><br><span class="line"><span class="string">b.loc[[&quot;tom&quot;,&quot;alax&quot;]]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">3.隐式索引iloc</span></span><br><span class="line"><span class="string">b.iloc[0]</span></span><br><span class="line"><span class="string">b.iloc[[0,1,2]]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>
+<p>切片<br>
+跟 numpyi 一样</p>
+<ul>
+<li>1. 数组<br>
+ b [1:3]<br>
+ 2. 字典<br>
+ b [“tom”:“xs”]–&gt; 包括 &quot;xs&quot;<br>
+3.loc<br>
+b.loc[“tom”:“xs”]<br>
+4.iloc<br>
+b.iloc[1:3]</li>
+</ul>
+</li>
+<li>
+<p>属性</p>
+</li>
+</ul>
+<ol>
+<li>显示索引   —&gt; b.index</li>
+<li>长度       —&gt; b.size</li>
+<li>切片操作，但一般用于查看数据的结构
+<ul>
+<li>查看前 n 个  —&gt; b.head (n)</li>
+<li>查看后 n 个  —&gt; b.tail (n)</li>
+</ul>
+</li>
+<li>但索引没有对应的值，可能出现缺失数据显示 Nan 的情况</li>
+<li>
+<ul>
+<li>查看一个 bool 列表中是否含有至少一个 true :  any ()</li>
+</ul>
+ <div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(b.index == <span class="string">&#x27;语文&#x27;</span>).<span class="built_in">any</span>()</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>查看一个 bool 列表中是否全部 true ： all ()</li>
+</ul>
+</li>
+<li>可以使用 pd.isnull ()、pd.notnull () 或者自带 isnull ()、notnull () 函数检测缺失数据
+<ul>
+<li>查看大量数据集中是否存在至少一个空值 (函数结合使用)</li>
+</ul>
+ <div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b.isnull.<span class="built_in">any</span>()</span><br></pre></td></tr></table></figure></div>
+</li>
+<li>根据值排序：True 升序<br>
+ b.sort_value (ascending=True)</li>
+<li>统计值出现的次数<br>
+ b.value_counts ()<br>
+ 结果：<br>
+值   次数</li>
+</ol>
+<hr>
+<br>
+<h2 id="pandas-数据结构-dataframe"><a class="markdownIt-Anchor" href="#pandas-数据结构-dataframe">#</a> Pandas 数据结构 - DataFrame</h2>
+<p>DataFrame 是一个表格型的数据结构（类似于二维表，由行和列组成）<br>
+它含有一组有序的列，每列可以是不同的值类型（数值、字符串、布尔型值）。<strong>DataFrame 既有行索引也有列索引</strong>，它可以被看做由 Series 组成的字典（共同用一个索引）。<br>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/106.png"
+                      alt=""
+                ></p>
+<ul>
+<li>创建 DataFrame 对象<br>
+ pandas.DataFrame (data, row ,columns, dtype)</li>
+</ul>
+<p><strong>方式一：列表方式创建 Dataframe 对象</strong></p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">data = [[<span class="string">&#x27;小太阳&#x27;</span>,<span class="number">130.4</span>,<span class="number">1400</span>],[<span class="string">&#x27;鼠标&#x27;</span>,<span class="number">12.4</span>,<span class="number">100</span>],[<span class="string">&#x27;简单&#x27;</span>,<span class="number">234</span>,<span class="number">900</span>]]</span><br><span class="line">columns = [<span class="string">&#x27;名称&#x27;</span>,<span class="string">&#x27;单价&#x27;</span>,<span class="string">&#x27;数量&#x27;</span>]</span><br><span class="line">pf = pd.DataFrame(data=data, columns=columns)</span><br></pre></td></tr></table></figure></div>
+<p><strong>方式一：字典方式创建 Daraframe 对象</strong><br>
+列表的长度必须一样</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment"># 数据按一列一列的写</span></span><br><span class="line">    data = &#123;</span><br><span class="line">    <span class="string">&quot;名称&quot;</span>: [<span class="string">&quot;小太阳&quot;</span>,<span class="string">&#x27;鼠标&#x27;</span>,<span class="string">&#x27;简单&#x27;</span>],</span><br><span class="line">    <span class="string">&#x27;单价&#x27;</span>: [<span class="number">130.4</span>,<span class="number">12.3</span>,<span class="number">234</span>],</span><br><span class="line">    <span class="string">&#x27;数量&#x27;</span>: [<span class="number">1400</span>,<span class="number">100</span>,<span class="number">900</span>],</span><br><span class="line">    <span class="string">&#x27;公司&#x27;</span>：<span class="string">&#x27;超市&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">pf = pd.DataFrame(data=data)</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>
+<p>Daraframe 属性</p>
+<ul>
+<li>pf.index = [1,2,3]-----&gt; 修改行索引名称</li>
+<li>pf.columns= [“小太阳”,‘鼠标’,‘数量’]----&gt; 修改列索引名称<br>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/112.png"
+                      alt=""
+                ></li>
+</ul>
+</li>
+<li>
+<p>Daraframe 重要函数<br>
+描述每一列的信息<br>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/113.png"
+                      alt=""
+                ></p>
+</li>
+</ul>
+<h2 id="导入外部数据"><a class="markdownIt-Anchor" href="#导入外部数据">#</a> 导入外部数据</h2>
+<ul>
+<li>
+<p>修改数据格式<br>
+左对齐<br>
+ pd.set_option (‘display.unicode.east_asian_width’,True)</p>
+</li>
+<li>
+<p>导入.xls 或者.xlsx 文件</p>
+<ul>
+<li>pd.read_Excel(io, sheet_name, header, usecols)</li>
+<li>常数说明
+<ul>
+<li>io: 文件路径</li>
+<li>sheet_name: Excel 中哪一个表<br>
+ 1. 可以按索引来取值：sheet_name=0 为第一张表<br>
+ 2. 安表名称来取：sheet_name=‘sheet’<br>
+3. 取多张表：sheet_name=[0,1,“sheet”]</li>
+<li>header: 默认值为 0，按第一行的值为列名，如果没有列名设置为 None</li>
+<li>usecols: 默认选取所有列，也可以选取某几列  usecols=[‘姓名’，‘总成绩’]</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="导入csv文件-导入txt文件-导入html网页"><a class="markdownIt-Anchor" href="#导入csv文件-导入txt文件-导入html网页">#</a> 导入 csv 文件、导入 txt 文件、，导入 html 网页</h2>
+<ul>
+<li>
+<p>csv<br>
+pd.read_csv(filepath_or_buffer,sep=&quot;,&quot;,header,encoind=None)</p>
+</li>
+<li>
+<p>txt<br>
+pd.read_txt(filepath_or_buffer,sep=&quot;\t&quot;,header,encoind=None)</p>
+</li>
+<li>
+<p>html 网页<br>
+<strong>只有含有 table 标签的才能读取</strong><br>
+ pd.read_html (io, match=’+’, flavor, header, encoding)<br>
+ 参数说明</p>
+<ul>
+<li>io: 字符串、文件路径、可以是 url 链接，网址不接受 https</li>
+<li>match: 正则表达式</li>
+<li>flavor: 默认解析器 lxml</li>
+</ul>
+</li>
+</ul>
+ <div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">    url = <span class="string">&#x27;http://www.espn.com/nba/salaries&#x27;</span></span><br><span class="line">    pf = pd.DataFrame()</span><br><span class="line">    data = pd.read_html(url,header=<span class="number">0</span>)</span><br><span class="line">    pf = pf.append(data)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 保存成csv文件</span></span><br><span class="line">    pf.to_csv(<span class="string">&quot;xxx.csv&quot;</span>,index=<span class="literal">False</span>)</span><br><span class="line"> ```   </span><br><span class="line"></span><br><span class="line"><span class="comment">## 数据提取</span></span><br><span class="line">- Dataframe对象的loc属性和iloc属性</span><br><span class="line">    -  loc属性</span><br><span class="line">    以**列名**(columns)和**行名**(index)作为参数,当只有一个参数时,默认是行名,即抽取整行数据,包括所有列。</span><br><span class="line">   </span><br><span class="line">    - iloc属性</span><br><span class="line">    以**行和列位置**索引（即:<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,.…）作为参数,<span class="number">0</span>表示第一行，<span class="number">1</span>表示第<span class="number">2</span>行，以此类推。当只有一个参数时,默认是行索引,即抽取整行数据,包括所有列。</span><br><span class="line"></span><br><span class="line">- 实例</span><br><span class="line">使用列表传参数</span><br><span class="line">```python</span><br><span class="line">    <span class="comment"># 创建dataframe对象 </span></span><br><span class="line">    data = [[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],[<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]]</span><br><span class="line">    index = [<span class="string">&#x27;语文&#x27;</span>,<span class="string">&#x27;数学&#x27;</span>,<span class="string">&#x27;英语&#x27;</span>]</span><br><span class="line">    columns = [<span class="string">&#x27;张三&#x27;</span>,<span class="string">&#x27;李四&#x27;</span>,<span class="string">&#x27;王五&#x27;</span>]</span><br><span class="line">    pf = pd.DataFrame(data=data,index=index, columns=columns)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 提取行数据   （使用中括号）</span></span><br><span class="line">    pf.loc[<span class="string">&#x27;语文&#x27;</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 提取多行数据--------谁和谁</span></span><br><span class="line">    pf.loc[[<span class="string">&#x27;语文&#x27;</span>, <span class="string">&#x27;数学&#x27;</span>]]   <span class="comment"># 结果呈现表格形式，直观</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 提取连续行数据--------谁到谁</span></span><br><span class="line">    pf.loc[[<span class="string">&#x27;语文&#x27;</span>:<span class="string">&#x27;数学&#x27;</span>]] <span class="comment"># 包含</span></span><br><span class="line">    pf.iloc[[<span class="number">0</span>:<span class="number">2</span>:<span class="number">1</span>]]  <span class="comment"># 不包含</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 行、列提取</span></span><br><span class="line">    pf.loc[[<span class="string">&#x27;语文&#x27;</span>],[<span class="string">&#x27;张三&#x27;</span>,<span class="string">&#x27;李四&#x27;</span>]]</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>按条件提取数据<br>
+ pf.loc [pf [‘语文’] &gt; 60]</li>
+</ul>
+<h2 id="数据增加-删除和修改"><a class="markdownIt-Anchor" href="#数据增加-删除和修改">#</a> 数据增加、删除和修改</h2>
+<ul>
+<li>
+<p>增加</p>
+<ul>
+<li>
+<p>那列增加数据</p>
+<ul>
+<li>
+<p>直接赋值法<br>
+ pf [‘政治’]=[100,100,100]</p>
+</li>
+<li>
+<p>使用 loc 属性在最后一列增加<br>
+ arr=[100,100,100]<br>
+ pf.loc [:,‘化学’]=arr</p>
+</li>
+<li>
+<p>指定位置插入<br>
+ pf.insert (2,“地理”,arr)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>那行增加数据</p>
+<ul>
+<li>loc 属性添加<br>
+ pf.loc [‘成六’]=[100,100,100,100,100,100]</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>修改</p>
+<ul>
+<li>
+<p>修改列标题</p>
+<ul>
+<li>
+<p>使用列索引<br>
+ pf.columns=[“数学”,‘云纹’,‘云纹’]</p>
+</li>
+<li>
+<p>使用 rename 方法（加参数 inpalce）<br>
+<strong>传入参数为字典</strong><br>
+ pf.rename (columns={“数学”:“语文 1”,“英语”:‘英语 1’,‘数学’:‘数学 1’},inplace=True)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>修改行标题</p>
+<ul>
+<li>
+<p>使用行索引<br>
+ pf.index=[1,2,3]</p>
+</li>
+<li>
+<p>使用 rename 方法（加参数 inpalce）<br>
+pf.rename(index={1:2,2:3,3:4},inplace=True)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>修改数据</p>
+<ul>
+<li>
+<p>修改一整行<br>
+ pf.loc [‘张三’]=[1,2,3]<br>
+ pf.iloc [0,:]-----&gt; 修改第零行所有列 == 这一整行</p>
+</li>
+<li>
+<p>修改一整列<br>
+ pf.iloc [:,0]=[1,2,3]</p>
+</li>
+<li>
+<p>修改某一数据<br>
+ pf.loc [“张三”,‘数学’]=90<br>
+pf.iloc[0,0]=98</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>删除<br>
+ pf.drop (index, columns,inplace=True)</p>
+</li>
+</ul>
+<p>pf.loc [‘张三’]&lt;5----&gt; 行<br>
+ pf [“数学”]&lt;5--------&gt; 列</p>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：Pandas</li>
+        <li>本文作者：Xu</li>
+        <li>创建时间：2023-03-02 14:29:48</li>
+        <li>
+            本文链接：http://example.com/2023/03/02/Pandas/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">#数据分析</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2023/02/07/window%E7%BB%88%E7%AB%AF%E6%8C%87%E4%BB%A4/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">终端指令</span>
+                                    <span class="post-nav-item">下一篇</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">此页目录</div>
+        <div class="page-title">Pandas</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-text"> 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pandas-%E5%BA%94%E7%94%A8"><span class="nav-text"> Pandas 应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pandas-%E5%AE%89%E8%A3%85"><span class="nav-text"> Pandas 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pandas-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-series"><span class="nav-text"> Pandas 数据结构 - Series</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pandas-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-dataframe"><span class="nav-text"> Pandas 数据结构 - DataFrame</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5%E5%A4%96%E9%83%A8%E6%95%B0%E6%8D%AE"><span class="nav-text"> 导入外部数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5csv%E6%96%87%E4%BB%B6-%E5%AF%BC%E5%85%A5txt%E6%96%87%E4%BB%B6-%E5%AF%BC%E5%85%A5html%E7%BD%91%E9%A1%B5"><span class="nav-text"> 导入 csv 文件、导入 txt 文件、，导入 html 网页</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%8A%A0-%E5%88%A0%E9%99%A4%E5%92%8C%E4%BF%AE%E6%94%B9"><span class="nav-text"> 数据增加、删除和修改</span></a></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+
+
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-regular fa-computer-classic"></i>&nbsp;&nbsp;<a href="/">Xu</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a> 驱动</span>
+                <br> 
+            <span class="theme-version-container">主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v</a>
+        </div>
+        
+        
+        
+            <div id="start_time_div" style="display:none">
+                2022/8/17 11:45:14
+            </div>
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+        
+            <script async data-pjax>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="unfolded-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="fa-regular fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="folded-tools-list">
+        <li class="right-bottom-tools tool-toggle-show flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/menu-shrink.js"></script>
+
+<script src="/js/tools/go-top-bottom.js"></script>
+
+<script src="/js/tools/dark-light-toggle.js"></script>
+
+
+
+
+
+    
+<script src="/js/tools/code-block.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/layouts/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/toc-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            REDEFINE.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            REDEFINE.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            REDEFINE.refresh();
+        });
+    });
+</script>
+
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
