@@ -397,8 +397,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="pc">2023-03-14 23:13:58</span>
-            <span class="mobile">2023-03-14 23:13</span>
+            <span class="pc">2023-03-19 23:36:59</span>
+            <span class="mobile">2023-03-19 23:36</span>
             <span class="hover-info">更新时间</span>
         </span>
     
@@ -799,8 +799,192 @@ pf.iloc[0,0]=98</p>
  pf.drop (index, columns,inplace=True)</p>
 </li>
 </ul>
-<p>pf.loc [‘张三’]&lt;5----&gt; 行<br>
- pf [“数学”]&lt;5--------&gt; 列</p>
+<p>pf.loc [‘张三’]&lt;5  ----&gt; 行<br>
+ pf [“数学”]&lt;5      ----&gt; 列</p>
+<h2 id="数据清洗"><a class="markdownIt-Anchor" href="#数据清洗">#</a> 数据清洗</h2>
+<ul>
+<li>
+<p>查看缺失值<br>
+<a class="link"   target="_blank" rel="noopener" href="http://pf.info" > pf.info <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> ()：查看缺失值</p>
+</li>
+<li>
+<p>判断数据是否存在缺失值<br>
+ pf.isnull (): 缺失时为 True</p>
+</li>
+<li>
+<p>缺失值的处理方式</p>
+<ul>
+<li>删除
+<ul>
+<li>1、pf.dropna (): 删除有缺失值的那一行</li>
+<li>2、pf [‘课程数量’].notnull------&gt; 查询<strong>课程数量</strong>那一列 NAN【有缺失为 false】<br>
+print (pf [pf [‘课程数量’].notnull])-----&gt; 提取不含有 NAN 的数据</li>
+</ul>
+</li>
+<li>填充或替换<br>
+ pf [“课程数量”]=pf [“课程数量”].fillna (0)----------&gt; 将课程数量列 NAN 填充为 0</li>
+<li>插值（均值、中位数、众数填充）</li>
+</ul>
+</li>
+<li>
+<p>重复值的处理</p>
+<ul>
+<li>判断是否有重复值<br>
+ pf.duplicates ()-----&gt; 返回 true/false</li>
+<li>删除<br>
+ pf.drop_duplicates ()-------------&gt; 删除一行</li>
+<li>去除指定列的重复数据<br>
+ pf.drop_duplicates ([“课程数量”],keep=“last”)-------&gt; 参数 keep：保留重复行最后一行</li>
+</ul>
+</li>
+</ul>
+<h2 id="索引"><a class="markdownIt-Anchor" href="#索引">#</a> 索引</h2>
+<ul>
+<li>
+<p>重新设置索引<br>
+对象.reindex (index=None, columns=None, axis=None, method=None, fill_value=nan)</p>
+</li>
+<li>
+<p>Series 对象重新设置索引</p>
+</li>
+</ul>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Series对象重新设置索引</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">s = pd.Series([<span class="number">11</span>,<span class="number">22</span>,<span class="number">33</span>],index=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新设置索引</span></span><br><span class="line"><span class="built_in">print</span>(s.reindex(<span class="built_in">range</span>(<span class="number">1</span>,<span class="number">6</span>)))  <span class="comment"># 多出来的两个为NAN</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 填充参数 fill_value</span></span><br><span class="line"><span class="built_in">print</span>(s.reindex(<span class="built_in">range</span>(<span class="number">1</span>,<span class="number">6</span>),fill_value=<span class="number">0</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 填充方法参数 meth0d=ffill(向前)、bfill(向后)</span></span><br><span class="line"><span class="built_in">print</span>(s.reindex(<span class="built_in">range</span>(<span class="number">1</span>,<span class="number">6</span>),method=<span class="string">&#x27;bfill&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(s.reindex(<span class="built_in">range</span>(<span class="number">1</span>,<span class="number">6</span>),method=<span class="string">&#x27;ffill&#x27;</span>))</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>Dataframe 对象</li>
+</ul>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data=[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],[<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]]</span><br><span class="line">index = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>]</span><br><span class="line">columns=[<span class="string">&quot;语文&quot;</span>,<span class="string">&#x27;数学&#x27;</span>,<span class="string">&#x27;英语&#x27;</span>]</span><br><span class="line">df = pd.DataFrame(data=data,index=index,columns=columns)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新设置行索引和列索引</span></span><br><span class="line">df=df.reindex(index=[<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>],columns=[<span class="string">&quot;语文&quot;</span>,<span class="string">&#x27;数学&#x27;</span>,<span class="string">&#x27;英语&#x27;</span>,<span class="string">&#x27;政治&#x27;</span>])</span><br><span class="line">df</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>
+<p>设置某列为行索引<br>
+ df.set_index ([‘语文’])</p>
+</li>
+<li>
+<p>重新设置连续的索引<br>
+具体应用：数据在清洗后，某些含有 NaN 的行被删除，需要将行索引重新设置为连续的索引</p>
+<ul>
+<li>
+<p>df=df.dropnan()<br>
+df.reset_index(drop=True)</p>
+</li>
+<li>
+<p>df.dropnan().reset_index(drop=True)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="数据排序和排名"><a class="markdownIt-Anchor" href="#数据排序和排名">#</a> 数据排序和排名</h2>
+<ul>
+<li>Dataframe 对象排序使用 sort_value ()<br>
+df.sort_value(by, ascending=True, kind=‘quicksort’, na_position=‘last’)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">by</td>
+<td style="text-align:left">要排序的列名称</td>
+</tr>
+<tr>
+<td style="text-align:left">acending</td>
+<td style="text-align:left">默认值为 True（升序）、False (降序)</td>
+</tr>
+<tr>
+<td style="text-align:left">kind</td>
+<td style="text-align:left">排序时使用的算法，默认为‘quicksort’, 也有混合排、堆排序</td>
+</tr>
+<tr>
+<td style="text-align:left">na_position</td>
+<td style="text-align:left">空值的位置，默认在最后面</td>
+</tr>
+</tbody>
+</table>
+<br>
+<ul>
+<li>排名<br>
+排名是根据 Series 或 Dataframe 对象的某几列的值进行排名，使用 rank ()<br>
+df.rank(method=“average”, ascending=True, na_option=“keep”)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">method</td>
+<td style="text-align:left">排序方法，默认为平均值、min、max・・・</td>
+</tr>
+<tr>
+<td style="text-align:left">acending</td>
+<td style="text-align:left">默认值为 True（升序）、False (降序)</td>
+</tr>
+<tr>
+<td style="text-align:left">na_option</td>
+<td style="text-align:left">空值排序：keep、top、bottom</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df=pd.read_csv(<span class="string">&#x27;NBA_salary.csv&#x27;</span>)</span><br><span class="line">df = df.sort_values(by=<span class="string">&quot;SALARY&quot;</span>,ascending=<span class="literal">False</span>)</span><br><span class="line">df[<span class="string">&#x27;薪资排名&#x27;</span>]=df[<span class="string">&#x27;SALARY&#x27;</span>].rank(ascending=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure></div>
+<h2 id="数据计算"><a class="markdownIt-Anchor" href="#数据计算">#</a> 数据计算</h2>
+<ul>
+<li>sum(axis, skipna)<br>
+ axis = 1  —&gt; 每一列相加 <strong>不给该值默认是 1—》列进行计算</strong><br>
+ skipna=1  —&gt; 将 nan 转换成 0</li>
+</ul>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">data = [</span><br><span class="line">    [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],</span><br><span class="line">    [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],</span><br><span class="line">    [<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]</span><br><span class="line">]</span><br><span class="line">index = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">columns = [<span class="string">&quot;语文&quot;</span>,<span class="string">&#x27;数学&#x27;</span>,<span class="string">&#x27;英语&#x27;</span>]</span><br><span class="line">df = pd.DataFrame(data=data,index=index,columns=columns)</span><br><span class="line">df</span><br><span class="line">df[<span class="string">&quot;总成绩&quot;</span>]=df.<span class="built_in">sum</span>(axis=<span class="number">1</span>)  <span class="comment"># 在原有的基础上添加一个总成绩列</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># df.loc[&quot;单科最高分&quot;]=df.max(axis=0)</span></span><br></pre></td></tr></table></figure></div>
+<ul>
+<li></li>
+</ul>
+<p>mean(axis)  min(axis) max(axis) media()<br>
+ 平均值<br>
+ mode (axis=0)  var (axis=None)  std (axis=None)<br>
+ 众数          方差             标准差</p>
+<h2 id="数据格式化"><a class="markdownIt-Anchor" href="#数据格式化">#</a> 数据格式化</h2>
+<ul>
+<li>设置小数位数<br>
+ df.round (decimals=0)</li>
+</ul>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 对df所有的元素起作用</span></span><br><span class="line">df.<span class="built_in">round</span>(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对指定列保留小数位数----------------&gt;参数为字典</span></span><br><span class="line">df.<span class="built_in">round</span></span><br><span class="line">(&#123;</span><br><span class="line">    <span class="string">&#x27;数学&#x27;</span>:<span class="number">1</span>,</span><br><span class="line">    <span class="string">&#x27;语文&#x27;</span>:<span class="number">2</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>设置百分比<br>
+ apply ()、map ()</li>
+</ul>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加一列“百分比”: 语文那一列，小数点后两位</span></span><br><span class="line">df[<span class="string">&quot;百分比&quot;</span>]=df[<span class="string">&quot;语文&quot;</span>].apply(<span class="keyword">lambda</span> x:<span class="built_in">format</span>(x,<span class="string">&#x27;.2%&#x27;</span>))  <span class="comment"># 保留两位小数</span></span><br><span class="line">df[<span class="string">&quot;百分比&quot;</span>]=df[<span class="string">&quot;语文&quot;</span>].<span class="built_in">map</span>(<span class="keyword">lambda</span> x:<span class="built_in">format</span>(x,<span class="string">&#x27;.2%&#x27;</span>))   <span class="comment"># 效果一样的</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>千位分隔符<br>
+ format ()</li>
+</ul>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">&quot;语文&quot;</span>]=df[<span class="string">&quot;语文&quot;</span>].apply(<span class="keyword">lambda</span> x:<span class="built_in">format</span>(<span class="built_in">int</span>(x),<span class="string">&#x27;,&#x27;</span>))</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>
+<p>apply ()、map ()、applymap () 区别</p>
+<ul>
+<li>apply()<br>
+ Seriers：对每个元素都执行一次函数</li>
+</ul>
+  <div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = pd.Series(data=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],index=[<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>])</span><br><span class="line">s = s.apply(<span class="keyword">lambda</span> x:x+<span class="number">2</span>)</span><br></pre></td></tr></table></figure></div>
+<p>DataFrame：只能对某一行或者某一列起作用，而不能对全部起作用</p>
+  <div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df = pd.DataFrame(data=data,index=index,columns=colunms)</span><br><span class="line"><span class="built_in">print</span>(df)</span><br><span class="line">df = df.apply(<span class="keyword">lambda</span> x:x.<span class="built_in">sum</span>(),axis=<span class="number">0</span>)</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>
+<p>map()<br>
+ 只能应用在 Serise 的每个元素上<br>
+参数：字典或者函数</p>
+</li>
+<li>
+<p>applymap()<br>
+ 只能应用与 DataFrame 的每个元素上</p>
+</li>
+</ul>
+</li>
+</ul>
 
             </div>
 
@@ -838,6 +1022,21 @@ pf.iloc[0,0]=98</p>
             
                 <div class="article-nav">
                     
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2023/03/20/Django-rest-framework/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">DRF</span>
+                                    <span class="post-nav-item">上一篇</span>
+                                </span>
+                            </a>
+                        </div>
+                    
                     
                         <div class="article-next">
                             <a class="next"
@@ -867,7 +1066,7 @@ pf.iloc[0,0]=98</p>
     <div class="post-toc">
         <div class="toc-title">此页目录</div>
         <div class="page-title">Pandas</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-text"> 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pandas-%E5%BA%94%E7%94%A8"><span class="nav-text"> Pandas 应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pandas-%E5%AE%89%E8%A3%85"><span class="nav-text"> Pandas 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pandas-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-series"><span class="nav-text"> Pandas 数据结构 - Series</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pandas-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-dataframe"><span class="nav-text"> Pandas 数据结构 - DataFrame</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5%E5%A4%96%E9%83%A8%E6%95%B0%E6%8D%AE"><span class="nav-text"> 导入外部数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5csv%E6%96%87%E4%BB%B6-%E5%AF%BC%E5%85%A5txt%E6%96%87%E4%BB%B6-%E5%AF%BC%E5%85%A5html%E7%BD%91%E9%A1%B5"><span class="nav-text"> 导入 csv 文件、导入 txt 文件、，导入 html 网页</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%8A%A0-%E5%88%A0%E9%99%A4%E5%92%8C%E4%BF%AE%E6%94%B9"><span class="nav-text"> 数据增加、删除和修改</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-text"> 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pandas-%E5%BA%94%E7%94%A8"><span class="nav-text"> Pandas 应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pandas-%E5%AE%89%E8%A3%85"><span class="nav-text"> Pandas 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pandas-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-series"><span class="nav-text"> Pandas 数据结构 - Series</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pandas-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-dataframe"><span class="nav-text"> Pandas 数据结构 - DataFrame</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5%E5%A4%96%E9%83%A8%E6%95%B0%E6%8D%AE"><span class="nav-text"> 导入外部数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5csv%E6%96%87%E4%BB%B6-%E5%AF%BC%E5%85%A5txt%E6%96%87%E4%BB%B6-%E5%AF%BC%E5%85%A5html%E7%BD%91%E9%A1%B5"><span class="nav-text"> 导入 csv 文件、导入 txt 文件、，导入 html 网页</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%8A%A0-%E5%88%A0%E9%99%A4%E5%92%8C%E4%BF%AE%E6%94%B9"><span class="nav-text"> 数据增加、删除和修改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97"><span class="nav-text"> 数据清洗</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95"><span class="nav-text"> 索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%8E%92%E5%BA%8F%E5%92%8C%E6%8E%92%E5%90%8D"><span class="nav-text"> 数据排序和排名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E8%AE%A1%E7%AE%97"><span class="nav-text"> 数据计算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="nav-text"> 数据格式化</span></a></li></ol>
 
     </div>
 </div>
